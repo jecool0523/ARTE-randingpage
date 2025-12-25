@@ -12,6 +12,11 @@ import { CreditsSection } from '@/components/CreditsSection';
 import { BackgroundMusic } from '@/components/BackgroundMusic';
 import { ScrollProgress } from '@/components/ScrollProgress';
 import { Navigation } from '@/components/Navigation';
+import { FanStorySection } from '@/components/FanStorySection';
+import { StreamingSection } from '@/components/StreamingSection';
+import { ConcertGallerySection } from '@/components/ConcertGallerySection';
+import { PhotoGallerySection } from '@/components/PhotoGallerySection';
+import { FinalMessageSection } from '@/components/FinalMessageSection';
 
 // Image data from the original site
 const galleryImages1 = [
@@ -60,6 +65,51 @@ const festivalImages = [
   { src: 'https://static-assets.everpurple.kr/history/images/12/isegye_festival_superhero_img_03_cropped.png', alt: 'Superhero', title: 'Superhero' },
   { src: 'https://static-assets.everpurple.kr/history/images/12/isegye_festival_winterspring_img_04_cropped.png', alt: '겨울봄', title: '겨울봄' },
 ];
+
+// Fan story images
+const fanImages = [
+  { src: 'https://static-assets.everpurple.kr/history/images/15/dulgi_img_01.png', alt: 'Dulgi' },
+  { src: 'https://static-assets.everpurple.kr/history/images/14/dulgi_img_04.png', alt: 'Dulgi' },
+  { src: 'https://static-assets.everpurple.kr/history/images/14/Fandom_img_02.png', alt: 'Fandom' },
+  { src: 'https://static-assets.everpurple.kr/history/images/14/Fandom_img_03.png', alt: 'Fandom' },
+];
+
+// Streaming background images
+const streamingImages = [
+  'https://static-assets.everpurple.kr/history/images/16/Streaming_wallpaper_img_01.png',
+  'https://static-assets.everpurple.kr/history/images/16/Streaming_wallpaper_img_02.png',
+  'https://static-assets.everpurple.kr/history/images/16/Streaming_wallpaper_img_03.png',
+];
+
+// Concert images
+const concertImages1 = [
+  { src: 'https://static-assets.everpurple.kr/history/images/18/Concert_img_01.png', alt: 'Concert' },
+];
+
+const concertImages2 = [
+  { src: 'https://static-assets.everpurple.kr/history/images/19_1/Concert_img_01.png', alt: 'Concert' },
+];
+
+const concertImages3 = [
+  { src: 'https://static-assets.everpurple.kr/history/images/19_2/Hamine_party_img_01.png', alt: 'Hamine Party' },
+  { src: 'https://static-assets.everpurple.kr/history/images/19_2/Concert_img_02.png', alt: 'Concert' },
+  { src: 'https://static-assets.everpurple.kr/history/images/19_2/Concert_img_03.png', alt: 'Concert' },
+];
+
+const concertImages4 = [
+  { src: 'https://static-assets.everpurple.kr/history/images/19_3/Concert_img_01.png', alt: 'Concert' },
+  { src: 'https://static-assets.everpurple.kr/history/images/19_3/Hamine_party_img_02.png', alt: 'Hamine Party' },
+  { src: 'https://static-assets.everpurple.kr/history/images/19_3/Let_it_snow_img_03.png', alt: 'Let it snow' },
+  { src: 'https://static-assets.everpurple.kr/history/images/19_3/Concert_img_04.png', alt: 'Concert' },
+  { src: 'https://static-assets.everpurple.kr/history/images/19_3/Concert_img_05.png', alt: 'Concert' },
+  { src: 'https://static-assets.everpurple.kr/history/images/19_3/Hamine_party_img_06.png', alt: 'Hamine Party' },
+];
+
+// Photo gallery images
+const photoGalleryImages = Array.from({ length: 23 }, (_, i) => ({
+  src: `https://static-assets.everpurple.kr/history/images/20/ine_photo_img_${i + 1}.png`,
+  alt: `INE photo ${i + 1}`,
+}));
 
 const Index = () => {
   const lenisRef = useLenis();
@@ -255,6 +305,81 @@ const Index = () => {
       <ZoomImageSection
         imageSrc="https://static-assets.everpurple.kr/history/images/13/Rewind_img_01_min.png"
         imageAlt="Rewind"
+      />
+
+      {/* Fan story section */}
+      <MonologueSection
+        lines={[
+          '노래뿐만이 아니라, 아이네의 이야기를,',
+          '더 나아가 \'아이네\' 자체를 좋아하는 사람들이 생겼습니다.',
+        ]}
+      />
+
+      <FanStorySection
+        images={fanImages}
+        topText="나를 찾아오고 기다리는 사람이 있다는 것은 굉장히 특별한 감정으로 다가왔어요."
+      />
+
+      {/* Streaming/Broadcasting section */}
+      <StreamingSection
+        images={streamingImages}
+        text="시작은 '노래하는 아이네'였지만 시청자들과 소통하는 방송인으로서의 모습 역시 저의 정체성이자 또 다른 즐거움이 되었습니다."
+      />
+
+      {/* Concert section intro */}
+      <ImageRevealSection
+        images={concertImages1}
+        layout="stacked"
+      />
+
+      <MonologueSection
+        lines={[
+          '한결같이 수많은 응원과 사랑을 보내주는 팬분들께 어떻게 보답할 수 있을까 고민한 끝에,',
+          '\'지친 하루에 잠깐의 쉼과 위로를 나눌 수 있는 아이돌이자 방송인\'이 되자고 결심했어요.',
+        ]}
+      />
+
+      {/* Concert images */}
+      <ImageRevealSection
+        images={concertImages2}
+        layout="stacked"
+      />
+
+      <ConcertGallerySection
+        images={concertImages3}
+        topText={[
+          '때로는 말로, 때로는 노래로,',
+          '그리고 때로는 색다른 시도로 방송을 진행했지만,',
+          '언제나 \'고된 일상 가운데 즐거운 시간을 함께 만들어가고 싶다\'는',
+          '마음만큼은 변하지 않았습니다.',
+        ]}
+      />
+
+      <ConcertGallerySection
+        images={concertImages4}
+      />
+
+      {/* Photo gallery */}
+      <PhotoGallerySection
+        images={photoGalleryImages}
+        topText={[
+          '3년 동안 쌓아온 소중한 추억들을 돌이켜보면서,',
+          '제가 사람들에게 들려주고 싶은 말은 무엇일지 곰곰이 생각해 보았어요.',
+          '고심 끝에, \'사람들이 좋아하는 나의 이야기이자 나의 진심\' 그 자체를 전하기로 했습니다.',
+        ]}
+      />
+
+      {/* Final message */}
+      <FinalMessageSection
+        backgroundImage="https://static-assets.everpurple.kr/history/images/ine_background.png"
+        lines={[
+          '그래서 저는 노래하려 합니다.',
+          '변하지 않는 언제나의 보라색으로,',
+          '여러분에게 아이네의 이야기를 전하는 콘서트에서',
+          '지금까지 쌓아온 추억부터 앞으로 여러분과 함께 만들어 갈 이야기까지',
+          '찾아오는 사람들에게 위로와 쉼을 주고픈 마음을 담아 콘서트를 준비했습니다.',
+          '아이네의 EVER PURPLE, 많은 기대와 사랑 부탁드립니다.',
+        ]}
       />
 
       {/* Credits */}
