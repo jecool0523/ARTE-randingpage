@@ -20,10 +20,10 @@ export const ZoomImageSection = ({
     offset: ['start end', 'end start'],
   });
 
-  // Zoom effect with smoother transitions
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 1.15, 1.4]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.2, 1, 1, 0.2]);
-  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [-2, 0, 2]);
+  // Zoom effect - starts very small (almost invisible) and grows
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.8], [0.05, 0.6, 1.1, 1.3]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.15, 0.3, 0.8, 1], [0, 0.3, 1, 1, 0.2]);
+  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [-3, 0, 3]);
 
   // Text parallax with enhanced motion
   const textY = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [80, 0, -80]);
