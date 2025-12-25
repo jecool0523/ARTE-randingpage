@@ -17,6 +17,7 @@ import { StreamingSection } from '@/components/StreamingSection';
 import { ConcertGallerySection } from '@/components/ConcertGallerySection';
 import { PhotoGallerySection } from '@/components/PhotoGallerySection';
 import { FinalMessageSection } from '@/components/FinalMessageSection';
+import { SectionDivider } from '@/components/SectionDivider';
 
 // Image data from the original site
 const galleryImages1 = [
@@ -153,12 +154,16 @@ const Index = () => {
         ]}
       />
 
+      <SectionDivider type="line" />
+
       <MonologueSection
         lines={[
           '지금부터 시작하는 저의 이야기에는 노래가 저에게 가진 의미부터 여러분과의 만남까지,',
           '무엇과도 바꿀 수 없는 소중한 순간들을 담았습니다.',
         ]}
       />
+
+      <SectionDivider type="gradient" fromColor="hsl(var(--background))" toColor="hsl(20, 10%, 8%)" />
 
       {/* First horizontal gallery */}
       <HorizontalGallerySection
@@ -169,11 +174,15 @@ const Index = () => {
         height="500vh"
       />
 
+      <SectionDivider type="gradient" fromColor="hsl(20, 10%, 8%)" toColor="hsl(var(--background))" />
+
       {/* Second horizontal gallery */}
       <HorizontalGallerySection
         images={galleryImages2}
         height="500vh"
       />
+
+      <SectionDivider type="line" />
 
       {/* Zoom image with text */}
       <ZoomImageSection
@@ -201,11 +210,15 @@ const Index = () => {
         ]}
       />
 
+      <SectionDivider type="gradient" fromColor="hsl(var(--background))" toColor="hsl(260, 15%, 6%)" />
+
       {/* Singles zoom */}
       <ZoomImageSection
         imageSrc="https://static-assets.everpurple.kr/history/images/08/singles.png"
         imageAlt="Singles"
       />
+
+      <SectionDivider type="line" />
 
       {/* Triple image sections */}
       <TripleImageSection
@@ -226,6 +239,8 @@ const Index = () => {
         title="LOCKDOWN"
       />
 
+      <SectionDivider type="gradient" fromColor="hsl(260, 15%, 6%)" toColor="hsl(var(--background))" />
+
       {/* Another World zoom */}
       <ZoomImageSection
         imageSrc="https://static-assets.everpurple.kr/history/images/10/Another_world_img_01.png"
@@ -233,6 +248,8 @@ const Index = () => {
         overlayText="온전히 저만의 것이 아닌, 모두의 노력이 맺은 결실이기에"
         subText="더 소중하게 느껴졌습니다."
       />
+
+      <SectionDivider type="line" />
 
       {/* Text with heading */}
       <ParallaxTextSection
@@ -287,6 +304,8 @@ const Index = () => {
         layout="row"
       />
 
+      <SectionDivider type="gradient" fromColor="hsl(var(--background))" toColor="hsl(280, 20%, 5%)" />
+
       {/* Festival zoom */}
       <ZoomImageSection
         imageSrc="https://static-assets.everpurple.kr/history/images/11/Isegye_festival_img_01.png"
@@ -295,17 +314,23 @@ const Index = () => {
         subText="뒤를 돌아보니, 노래를 들은 수많은 사람들의 미소를 볼 수 있었어요."
       />
 
+      <SectionDivider type="line" />
+
       {/* Festival images grid */}
       <ImageRevealSection
         images={festivalImages}
         layout="grid"
       />
 
+      <SectionDivider type="gradient" fromColor="hsl(280, 20%, 5%)" toColor="hsl(var(--background))" />
+
       {/* Rewind zoom */}
       <ZoomImageSection
         imageSrc="https://static-assets.everpurple.kr/history/images/13/Rewind_img_01_min.png"
         imageAlt="Rewind"
       />
+
+      <SectionDivider type="line" />
 
       {/* Fan story section */}
       <MonologueSection
@@ -320,17 +345,23 @@ const Index = () => {
         topText="나를 찾아오고 기다리는 사람이 있다는 것은 굉장히 특별한 감정으로 다가왔어요."
       />
 
+      <SectionDivider type="gradient" fromColor="hsl(var(--background))" toColor="hsl(220, 15%, 6%)" />
+
       {/* Streaming/Broadcasting section */}
       <StreamingSection
         images={streamingImages}
         text="시작은 '노래하는 아이네'였지만 시청자들과 소통하는 방송인으로서의 모습 역시 저의 정체성이자 또 다른 즐거움이 되었습니다."
       />
 
+      <SectionDivider type="gradient" fromColor="hsl(220, 15%, 6%)" toColor="hsl(var(--background))" />
+
       {/* Concert section intro */}
       <ImageRevealSection
         images={concertImages1}
         layout="stacked"
       />
+
+      <SectionDivider type="line" />
 
       <MonologueSection
         lines={[
@@ -359,6 +390,8 @@ const Index = () => {
         images={concertImages4}
       />
 
+      <SectionDivider type="gradient" fromColor="hsl(var(--background))" toColor="hsl(270, 25%, 4%)" />
+
       {/* Photo gallery */}
       <PhotoGallerySection
         images={photoGalleryImages}
@@ -368,6 +401,8 @@ const Index = () => {
           '고심 끝에, \'사람들이 좋아하는 나의 이야기이자 나의 진심\' 그 자체를 전하기로 했습니다.',
         ]}
       />
+
+      <SectionDivider type="gradient" fromColor="hsl(270, 25%, 4%)" toColor="hsl(var(--background))" />
 
       {/* Final message */}
       <FinalMessageSection
