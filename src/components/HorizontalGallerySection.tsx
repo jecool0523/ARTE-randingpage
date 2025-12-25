@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 interface GalleryImage {
   src: string;
@@ -23,17 +23,32 @@ export const HorizontalGallerySection = ({
   height = '400vh',
 }: HorizontalGallerySectionProps) => {
   const containerRef = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  // Calculate total gallery width
-  const totalWidth = images.length * 450 + (images.length - 1) * 32; // image width + gaps
+  // Mobile: smaller images, desktop: larger
+  const imageWidth = isMobile ? 280 : 450;
+  const imageHeight = isMobile ? '35vh' : '50vh';
+  const gap = isMobile ? 16 : 32;
+  
+  const totalWidth = images.length * imageWidth + (images.length - 1) * gap;
+  const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
+  
   const translateX = useTransform(
     scrollYProgress,
     [0, 1],
-    ['10vw', `-${totalWidth - window.innerWidth + 200}px`]
+    [isMobile ? '5vw' : '10vw', `-${totalWidth - windowWidth + (isMobile ? 100 : 200)}px`]
   );
 
   const textOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
@@ -42,31 +57,31 @@ export const HorizontalGallerySection = ({
     <section
       ref={containerRef}
       className="relative bg-background"
-      style={{ height }}
+      style={{ height: isMobile ? '300vh' : height }}
     >
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
         {/* Gallery */}
         <motion.div
-          className="flex items-center gap-8"
-          style={{ x: translateX }}
+          className="flex items-center"
+          style={{ x: translateX, gap: gap }}
         >
           {images.map((image, index) => (
             <motion.div
               key={index}
-              className="gallery-image-wrapper h-[50vh] flex-shrink-0"
+              className="gallery-image-wrapper flex-shrink-0 overflow-hidden rounded-lg"
               style={{
-                width: image.ratio ? `calc(50vh * ${image.ratio})` : '350px',
-                aspectRatio: image.ratio || 0.8,
+                width: image.ratio ? `calc(${imageHeight} * ${image.ratio})` : `${imageWidth}px`,
+                height: imageHeight,
               }}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              viewport={{ once: true, margin: '-10%' }}
+              transition={{ duration: 0.5, delay: index * 0.03 }}
+              viewport={{ once: true, margin: '-5%' }}
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"
               />
             </motion.div>
@@ -76,21 +91,21 @@ export const HorizontalGallerySection = ({
         {/* Text overlay */}
         {(description || title) && (
           <motion.div
-            className="absolute bottom-16 left-0 right-0 px-8 text-center"
+            className="absolute bottom-8 left-0 right-0 px-4 text-center md:bottom-16 md:px-8"
             style={{ opacity: textOpacity }}
           >
             {description && (
-              <p className="mx-auto max-w-2xl font-body text-base text-text-body md:text-lg">
+              <p className="mx-auto max-w-xl font-body text-sm leading-relaxed text-text-body md:max-w-2xl md:text-base lg:text-lg">
                 {description}
               </p>
             )}
             {linkText && (
-              <button className="mt-4 font-body text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground">
+              <button className="mt-3 font-body text-xs text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground md:mt-4 md:text-sm">
                 {linkText}
               </button>
             )}
             {title && (
-              <p className="mt-4 font-display text-lg italic text-primary md:text-xl">
+              <p className="mt-3 font-display text-sm italic text-primary md:mt-4 md:text-lg lg:text-xl">
                 {title}
               </p>
             )}

@@ -16,12 +16,15 @@ export const MonologueSection = ({ lines, className = '' }: MonologueSectionProp
   return (
     <section
       ref={ref}
-      className={`relative flex min-h-screen flex-col items-center justify-center bg-background px-4 py-32 ${className}`}
+      className={`relative flex min-h-[80vh] flex-col items-center justify-center bg-background px-4 py-16 md:min-h-screen md:py-32 ${className}`}
     >
-      <div className="monologue-text">
+      {/* Subtle background glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsla(var(--primary)/0.03)_0%,transparent_70%)]" />
+      
+      <div className="monologue-text relative z-10">
         {lines.map((line, index) => {
-          const start = 0.1 + index * 0.1;
-          const end = start + 0.3;
+          const start = 0.1 + index * 0.12;
+          const end = start + 0.35;
           
           return (
             <MonologueLine
@@ -30,6 +33,7 @@ export const MonologueSection = ({ lines, className = '' }: MonologueSectionProp
               scrollProgress={scrollYProgress}
               start={start}
               end={end}
+              index={index}
             />
           );
         })}
@@ -43,24 +47,36 @@ interface MonologueLineProps {
   scrollProgress: ReturnType<typeof useScroll>['scrollYProgress'];
   start: number;
   end: number;
+  index: number;
 }
 
-const MonologueLine = ({ line, scrollProgress, start, end }: MonologueLineProps) => {
+const MonologueLine = ({ line, scrollProgress, start, end, index }: MonologueLineProps) => {
   const opacity = useTransform(
     scrollProgress,
-    [start, start + 0.1, end - 0.1, end],
+    [start, start + 0.08, end - 0.08, end],
     [0, 1, 1, 0]
   );
   const y = useTransform(
     scrollProgress,
-    [start, start + 0.1, end - 0.1, end],
-    [30, 0, 0, -30]
+    [start, start + 0.08, end - 0.08, end],
+    [25, 0, 0, -25]
+  );
+  const scale = useTransform(
+    scrollProgress,
+    [start, start + 0.08, end - 0.08, end],
+    [0.98, 1, 1, 0.98]
+  );
+  // Subtle blur effect
+  const filter = useTransform(
+    scrollProgress,
+    [start, start + 0.08, end - 0.08, end],
+    ['blur(2px)', 'blur(0px)', 'blur(0px)', 'blur(2px)']
   );
 
   return (
     <motion.p
-      className="text-lg font-light leading-relaxed text-text-body md:text-xl lg:text-2xl"
-      style={{ opacity, y }}
+      className="text-base font-light leading-relaxed text-text-body md:text-lg lg:text-2xl"
+      style={{ opacity, y, scale, filter }}
     >
       {line}
     </motion.p>

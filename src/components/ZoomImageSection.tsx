@@ -20,45 +20,46 @@ export const ZoomImageSection = ({
     offset: ['start end', 'end start'],
   });
 
-  // Zoom effect: starts small and scales up as you scroll through
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 1.2, 1.5]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.3, 1, 1, 0.3]);
+  // Zoom effect with smoother transitions
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 1.15, 1.4]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.2, 1, 1, 0.2]);
+  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [-2, 0, 2]);
 
-  // Text parallax
-  const textY = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [100, 0, -100]);
-  const textOpacity = useTransform(scrollYProgress, [0.2, 0.4, 0.6, 0.8], [0, 1, 1, 0]);
+  // Text parallax with enhanced motion
+  const textY = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [80, 0, -80]);
+  const textOpacity = useTransform(scrollYProgress, [0.25, 0.4, 0.6, 0.75], [0, 1, 1, 0]);
+  const textScale = useTransform(scrollYProgress, [0.25, 0.5, 0.75], [0.95, 1, 0.95]);
 
   return (
     <section
       ref={containerRef}
-      className="relative h-[200vh] bg-background"
+      className="relative h-[150vh] bg-background md:h-[200vh]"
     >
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
-        {/* Zooming image */}
+      <div className="sticky top-0 flex h-[100dvh] items-center justify-center overflow-hidden">
+        {/* Zooming image with subtle rotation */}
         <motion.div
           className="zoom-image-container"
-          style={{ scale, opacity: imageOpacity }}
+          style={{ scale, opacity: imageOpacity, rotate }}
         >
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="h-[60vh] w-auto max-w-[90vw] object-contain md:h-[70vh]"
+            className="h-[45vh] w-auto max-w-[85vw] rounded-lg object-contain shadow-2xl md:h-[60vh] md:max-w-[80vw] lg:h-[70vh]"
             loading="lazy"
           />
         </motion.div>
 
-        {/* Overlay text */}
+        {/* Overlay text with enhanced styling */}
         {overlayText && (
           <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center text-center"
-            style={{ y: textY, opacity: textOpacity }}
+            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
+            style={{ y: textY, opacity: textOpacity, scale: textScale }}
           >
-            <p className="mx-auto max-w-2xl px-4 font-body text-lg text-foreground md:text-xl lg:text-2xl">
+            <p className="mx-auto max-w-lg font-body text-base font-medium leading-relaxed text-foreground drop-shadow-lg md:max-w-2xl md:text-xl lg:text-2xl">
               {overlayText}
             </p>
             {subText && (
-              <p className="mt-4 font-body text-sm text-muted-foreground md:text-base">
+              <p className="mt-3 font-body text-xs text-muted-foreground md:mt-4 md:text-sm lg:text-base">
                 {subText}
               </p>
             )}

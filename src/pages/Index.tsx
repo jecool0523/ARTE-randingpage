@@ -9,6 +9,9 @@ import { ParallaxTextSection } from '@/components/ParallaxTextSection';
 import { TripleImageSection } from '@/components/TripleImageSection';
 import { ImageRevealSection } from '@/components/ImageRevealSection';
 import { CreditsSection } from '@/components/CreditsSection';
+import { BackgroundMusic } from '@/components/BackgroundMusic';
+import { ScrollProgress } from '@/components/ScrollProgress';
+import { Navigation } from '@/components/Navigation';
 
 // Image data from the original site
 const galleryImages1 = [
@@ -80,6 +83,11 @@ const Index = () => {
 
   return (
     <main className="bg-background">
+      {/* Global UI elements */}
+      <ScrollProgress />
+      <BackgroundMusic />
+      <Navigation />
+
       {/* Landing */}
       <LandingSection onStart={handleStart} />
 

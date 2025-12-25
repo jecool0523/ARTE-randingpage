@@ -69,6 +69,7 @@
 
   html {
     scroll-behavior: auto;
+    -webkit-tap-highlight-color: transparent;
   }
 
   html.lenis {
@@ -95,6 +96,21 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Mobile touch improvements */
+  @media (max-width: 768px) {
+    body {
+      touch-action: pan-y;
+    }
+  }
+
+  /* Image optimizations */
+  img {
+    @apply select-none;
+    -webkit-user-drag: none;
   }
 }
 
@@ -155,13 +171,25 @@
     @apply text-center;
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .monologue-text {
+      padding: 0 2rem;
+    }
   }
 
   .monologue-text p {
-    @apply text-lg md:text-xl lg:text-2xl font-light leading-relaxed;
+    @apply text-base md:text-lg lg:text-2xl font-light leading-relaxed;
     color: hsl(var(--text-body));
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .monologue-text p {
+      margin-bottom: 1rem;
+    }
   }
 
   /* Hero button */
