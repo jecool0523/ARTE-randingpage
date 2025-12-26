@@ -2,7 +2,47 @@
 // Site Data - Centralized content management
 // ============================
 
+// ============================
+// Site Metadata
+// ============================
+export const siteMetadata = {
+  title: 'INE History | 아이네 히스토리',
+  description: '아이네에 대한 이야기를 몰입형 전시와 함께 감상해보세요. An immersive storytelling experience.',
+  author: 'everpurple',
+  themeColor: '#0a0a0a',
+  url: 'https://everpurple.kr/ine',
+  ogImage: 'https://static-assets.everpurple.kr/history/ine_history_landing_background.png?1',
+  twitterCard: 'summary_large_image' as const,
+  keywords: ['아이네', 'INE', '이세계아이돌', 'everpurple', '콘서트', '히스토리'],
+  locale: 'ko_KR',
+};
+
+// ============================
+// Navigation Chapters
+// ============================
+export interface NavigationChapter {
+  id: string;
+  title: string;
+  offset: number;
+}
+
+export const navigationChapters: NavigationChapter[] = [
+  { id: 'landing', title: '시작', offset: 0 },
+  { id: 'story', title: '이야기', offset: 0.1 },
+  { id: 'gallery', title: '갤러리', offset: 0.25 },
+  { id: 'journey', title: '여정', offset: 0.5 },
+  { id: 'festival', title: '축제', offset: 0.75 },
+  { id: 'credits', title: '마무리', offset: 0.95 },
+];
+
+export const navigationLabels = {
+  menuTitle: 'Chapters',
+  backToTop: '맨 위로',
+};
+
+// ============================
 // Gallery Images
+// ============================
 export const galleryImages1 = [
   { src: 'https://static-assets.everpurple.kr/history/images/04/God_knows_img_01.png', alt: 'INE history', ratio: 0.8 },
   { src: 'https://static-assets.everpurple.kr/history/images/04/God_knows_img_02.png', alt: 'INE history', ratio: 0.8 },
@@ -132,7 +172,7 @@ export const monologueTexts = {
   ],
   fanStory: [
     '노래뿐만이 아니라, 아이네의 이야기를,',
-    "더 나아가 '아이네' 자체를 좋아하는 사람들이 생겼습니다.",
+    "'아이네' 자체를 좋아하는 사람들이 생겼습니다.",
   ],
   concert: [
     '한결같이 수많은 응원과 사랑을 보내주는 팬분들께 어떻게 보답할 수 있을까 고민한 끝에,',
