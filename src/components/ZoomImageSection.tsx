@@ -17,38 +17,38 @@ export const ZoomImageSection = ({
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ['start start', 'end end'],
   });
 
-  // Image stays centered and scales from tiny to full size
-  // The sticky container keeps it fixed while scrolling
-  const scale = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75], [0.02, 0.4, 1, 1.15]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.15, 0.35, 0.8, 0.95], [0, 0.5, 1, 1, 0]);
+  // Image is fixed in center via sticky, scales from tiny to full size
+  // offset 'start start' means animation starts when section top hits viewport top
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.85], [0.03, 0.3, 1, 1.1]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.15, 0.5, 0.85, 1], [0, 0.6, 1, 1, 0]);
 
   // Text appears after image is scaled up
-  const textOpacity = useTransform(scrollYProgress, [0.4, 0.5, 0.7, 0.85], [0, 1, 1, 0]);
-  const textY = useTransform(scrollYProgress, [0.4, 0.55, 0.85], [30, 0, -30]);
-  const textScale = useTransform(scrollYProgress, [0.4, 0.55, 0.85], [0.95, 1, 0.95]);
+  const textOpacity = useTransform(scrollYProgress, [0.5, 0.6, 0.75, 0.9], [0, 1, 1, 0]);
+  const textScale = useTransform(scrollYProgress, [0.5, 0.65], [0.9, 1]);
 
   return (
     <section
       ref={containerRef}
-      className="relative h-[200vh] bg-background md:h-[250vh]"
+      className="relative h-[300vh] bg-background"
     >
-      {/* Sticky container keeps content fixed in center while scrolling */}
-      <div className="sticky top-0 flex h-[100dvh] items-center justify-center overflow-hidden">
-        {/* Image container - scales from center */}
+      {/* Sticky container - image stays fixed at center while user scrolls */}
+      <div className="sticky top-0 flex h-[100dvh] w-full items-center justify-center overflow-hidden">
+        {/* Image container - only scales, no vertical movement */}
         <motion.div
-          className="zoom-image-container flex items-center justify-center"
+          className="absolute flex items-center justify-center"
           style={{ 
             scale, 
             opacity: imageOpacity,
+            willChange: 'transform, opacity',
           }}
         >
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="h-auto max-h-[70vh] w-auto max-w-[85vw] rounded-lg object-contain shadow-2xl md:max-h-[75vh] md:max-w-[80vw]"
+            className="h-auto max-h-[60vh] w-auto max-w-[90vw] rounded-lg object-contain shadow-2xl sm:max-h-[65vh] sm:max-w-[85vw] md:max-h-[70vh] md:max-w-[75vw]"
             loading="lazy"
           />
         </motion.div>
@@ -56,15 +56,15 @@ export const ZoomImageSection = ({
         {/* Overlay text - appears after image is fully scaled */}
         {overlayText && (
           <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
-            style={{ y: textY, opacity: textOpacity, scale: textScale }}
+            className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center sm:px-6"
+            style={{ opacity: textOpacity, scale: textScale }}
           >
-            <div className="rounded-xl bg-background/60 px-8 py-6 backdrop-blur-sm md:px-12 md:py-8">
-              <p className="mx-auto max-w-lg font-body text-lg font-medium leading-relaxed text-foreground md:max-w-2xl md:text-xl lg:text-2xl">
+            <div className="rounded-xl bg-background/70 px-5 py-4 backdrop-blur-md sm:px-8 sm:py-6 md:px-12 md:py-8">
+              <p className="mx-auto max-w-xs font-body text-base font-medium leading-relaxed text-foreground sm:max-w-lg sm:text-lg md:max-w-2xl md:text-xl lg:text-2xl">
                 {overlayText}
               </p>
               {subText && (
-                <p className="mt-4 font-body text-sm text-muted-foreground md:mt-5 md:text-base lg:text-lg">
+                <p className="mt-3 font-body text-xs text-muted-foreground sm:mt-4 sm:text-sm md:mt-5 md:text-base lg:text-lg">
                   {subText}
                 </p>
               )}
