@@ -1,8 +1,19 @@
-# Welcome to your Lovable project
+# 아이네 에버퍼플 히스토리 페이지 클론코딩
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**URL**: https://everpurple-clone-je-cools-projects.vercel.app/
+
+## 해야할 것
+- 페이지 배경 추가하기
+- 스크롤 하이재킹 기법 추가하기
+- 배경 전환 추가
+- 배경음 추가
+- 동영상 추가
+- 내용 수정해서 새로운거 만들기
+  - 링크 추가하기
+  - 로고 추가하기
+  - 스토리텔링 내용 만들기 
 
 ## How can I edit this code?
 
