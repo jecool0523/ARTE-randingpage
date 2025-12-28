@@ -46,7 +46,7 @@ export const Navigation = () => {
     <>
       {/* Navigation toggle */}
       <motion.button
-        className="fixed left-4 top-4 z-50 flex h-12 w-12 touch-manipulation items-center justify-center rounded-full bg-card/80 backdrop-blur-md transition-all active:scale-95 hover:bg-card md:left-8 md:top-8"
+        className="fixed left-4 top-4 z-50 flex h-10 w-10 touch-manipulation items-center justify-center rounded-full border border-white/10 bg-black/40 backdrop-blur-sm transition-all active:scale-95 hover:bg-black/60 md:left-8 md:top-8 md:h-11 md:w-11"
         onClick={() => setIsOpen(!isOpen)}
         onTouchStart={handleTouchStart}
         whileHover={{ scale: 1.05 }}
@@ -58,9 +58,9 @@ export const Navigation = () => {
         aria-expanded={isOpen}
       >
         {isOpen ? (
-          <X className="h-5 w-5 text-foreground" />
+          <X className="h-4 w-4 text-white/90" />
         ) : (
-          <Menu className="h-5 w-5 text-foreground" />
+          <Menu className="h-4 w-4 text-white/90" />
         )}
       </motion.button>
 
@@ -68,7 +68,7 @@ export const Navigation = () => {
       <AnimatePresence>
         {showBackToTop && (
           <motion.button
-            className="fixed bottom-4 left-4 z-50 flex h-12 w-12 touch-manipulation items-center justify-center rounded-full bg-card/80 backdrop-blur-md transition-all active:scale-95 hover:bg-card md:bottom-8 md:left-8"
+            className="fixed bottom-4 left-4 z-50 flex h-10 w-10 touch-manipulation items-center justify-center rounded-full border border-white/10 bg-black/40 backdrop-blur-sm transition-all active:scale-95 hover:bg-black/60 md:bottom-8 md:left-8 md:h-11 md:w-11"
             onClick={scrollToTop}
             onTouchStart={handleTouchStart}
             whileHover={{ scale: 1.05 }}
@@ -79,7 +79,7 @@ export const Navigation = () => {
             transition={{ duration: 0.3 }}
             aria-label={navigationLabels.backToTop}
           >
-            <ChevronUp className="h-5 w-5 text-foreground" />
+            <ChevronUp className="h-4 w-4 text-white/90" />
           </motion.button>
         )}
       </AnimatePresence>
@@ -90,7 +90,7 @@ export const Navigation = () => {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -100,7 +100,7 @@ export const Navigation = () => {
 
             {/* Menu panel */}
             <motion.nav
-              className="fixed left-0 top-0 z-40 flex h-full w-72 touch-pan-y flex-col bg-card/95 p-6 pt-20 backdrop-blur-md md:w-80 md:p-12 md:pt-24"
+              className="fixed left-0 top-0 z-40 flex h-full w-64 touch-pan-y flex-col border-r border-white/5 bg-gradient-to-b from-[hsl(270,30%,8%)] via-[hsl(270,25%,6%)] to-black p-6 pt-20 md:w-72 md:p-10 md:pt-24"
               initial={{ x: '-100%', opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: '-100%', opacity: 0 }}
@@ -109,10 +109,10 @@ export const Navigation = () => {
               role="navigation"
               aria-label="챕터 네비게이션"
             >
-              <h2 className="mb-6 font-display text-lg text-primary md:mb-8 md:text-xl">
+              <h2 className="mb-8 font-display text-xs font-light uppercase tracking-[0.3em] text-white/40 md:mb-10 md:text-sm">
                 {navigationLabels.menuTitle}
               </h2>
-              <ul className="space-y-2 md:space-y-4">
+              <ul className="space-y-1 md:space-y-2">
                 {navigationChapters.map((chapter: NavigationChapter, index: number) => (
                   <motion.li
                     key={chapter.id}
@@ -126,9 +126,9 @@ export const Navigation = () => {
                         e.preventDefault();
                         scrollToSection(chapter.offset);
                       }}
-                      className="group flex min-h-[44px] w-full touch-manipulation items-center gap-3 py-2 font-body text-base text-foreground transition-colors active:text-primary hover:text-primary md:text-lg"
+                      className="group flex min-h-[44px] w-full touch-manipulation items-center gap-4 py-2 font-body text-sm font-light tracking-wide text-white/70 transition-all duration-300 active:text-white hover:text-white md:text-base"
                     >
-                      <span className="inline-block h-px w-6 bg-muted-foreground transition-all group-hover:w-10 group-hover:bg-primary group-active:w-10 group-active:bg-primary md:w-8 md:group-hover:w-12" />
+                      <span className="inline-block h-px w-4 bg-white/20 transition-all duration-300 group-hover:w-8 group-hover:bg-white/60 group-active:w-8 group-active:bg-white/60 md:w-5 md:group-hover:w-10" />
                       {chapter.title}
                     </button>
                   </motion.li>

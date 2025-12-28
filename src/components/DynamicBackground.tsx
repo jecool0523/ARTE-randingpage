@@ -80,10 +80,10 @@ export const DynamicBackground = () => {
         style={{ opacity: warmLayerOpacity }}
         className="absolute inset-0"
       >
-        {/* 상단에서 내려오는 따뜻한 조명 */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(180,100,50,0.25),transparent_70%)]" />
-        {/* 중앙 스포트라이트 효과 */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(120,80,40,0.15),transparent_50%)]" />
+        {/* 상단에서 내려오는 따뜻한 조명 - 더 깊고 풍부한 색감 */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_60%_at_50%_-10%,rgba(139,69,19,0.35),rgba(101,67,33,0.2)_40%,transparent_70%)]" />
+        {/* 중앙 스포트라이트 효과 - 세피아 톤 */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(160,82,45,0.12),transparent_60%)]" />
         {/* 바닥 그라데이션 */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
       </motion.div>
@@ -96,10 +96,12 @@ export const DynamicBackground = () => {
         style={{ opacity: purpleLayerOpacity }}
         className="absolute inset-0"
       >
-        {/* 은은한 보라색 그라데이션 */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_80%_at_50%_20%,rgba(120,50,180,0.2),transparent_60%)]" />
-        {/* 하단 보라색 */}
-        <div className="absolute inset-0 bg-gradient-to-t from-purple-950/40 via-transparent to-transparent" />
+        {/* 은은한 보라색 그라데이션 - 더 깊은 톤 */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_90%_at_50%_10%,rgba(88,28,135,0.25),rgba(59,7,100,0.15)_50%,transparent_80%)]" />
+        {/* 하단 보라색 - 더 어둡게 */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(270,50%,5%)]/60 via-transparent to-transparent" />
+        {/* 측면 비네팅 */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.3)_0%,transparent_20%,transparent_80%,rgba(0,0,0,0.3)_100%)]" />
       </motion.div>
 
       {/* ========================================
@@ -110,10 +112,12 @@ export const DynamicBackground = () => {
         style={{ opacity: deepPurpleLayerOpacity }}
         className="absolute inset-0"
       >
-        {/* 깊은 보라색 오버레이 */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_100%_at_50%_30%,rgba(80,30,120,0.3),rgba(30,10,50,0.5)_60%,transparent)]" />
-        {/* 비네트 효과 */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_30%,rgba(0,0,0,0.4)_100%)]" />
+        {/* 깊은 보라색 오버레이 - 더 진한 네이비-퍼플 */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_140%_100%_at_50%_20%,rgba(59,7,100,0.35),rgba(25,4,60,0.5)_50%,rgba(10,2,30,0.7)_100%)]" />
+        {/* 비네트 효과 - 더 강하게 */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_20%,rgba(0,0,0,0.5)_100%)]" />
+        {/* 미묘한 노이즈 텍스처 효과 */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }} />
       </motion.div>
 
       {/* ========================================
@@ -124,14 +128,14 @@ export const DynamicBackground = () => {
         style={{ opacity: cosmicLayerOpacity }}
         className="absolute inset-0"
       >
-        {/* 우주적 그라데이션 */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_150%_100%_at_50%_10%,rgba(60,20,100,0.4),rgba(20,5,40,0.6)_50%,rgba(5,0,15,0.8)_100%)]" />
-        {/* 별빛 효과 */}
+        {/* 우주적 그라데이션 - 더 깊고 신비로운 느낌 */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_180%_120%_at_50%_0%,rgba(49,10,89,0.5),rgba(20,3,45,0.7)_40%,rgba(5,0,12,0.9)_100%)]" />
+        {/* 별빛 효과 - 더 미묘하게 */}
         <div className="absolute inset-0">
           {stars.map((star) => (
             <motion.div
               key={star.id}
-              className="absolute rounded-full bg-white/80"
+              className="absolute rounded-full bg-white"
               style={{
                 left: `${star.left}%`,
                 top: `${star.top}%`,
@@ -139,8 +143,8 @@ export const DynamicBackground = () => {
                 height: star.size,
               }}
               animate={{
-                opacity: [0.2, 0.8, 0.2],
-                scale: [1, 1.2, 1],
+                opacity: [0.1, 0.5, 0.1],
+                scale: [1, 1.1, 1],
               }}
               transition={{
                 duration: star.duration,
@@ -151,8 +155,10 @@ export const DynamicBackground = () => {
             />
           ))}
         </div>
-        {/* 은하수 느낌의 대각선 빛 */}
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_40%,rgba(100,50,150,0.1)_50%,transparent_60%)]" />
+        {/* 은하수 느낌의 대각선 빛 - 더 넓고 은은하게 */}
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_30%,rgba(88,28,135,0.08)_50%,transparent_70%)]" />
+        {/* 상단 하이라이트 */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_30%_at_50%_0%,rgba(139,92,246,0.08),transparent_60%)]" />
       </motion.div>
 
       {/* ========================================
