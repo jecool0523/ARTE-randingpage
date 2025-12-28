@@ -1,27 +1,41 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 interface ZoomImageSectionProps {
-  imageSrc: string;
-  imageAlt: string;
+  src?: string;
+  alt?: string;
+  type?: 'image' | 'video';
   overlayText?: string;
   subText?: string;
+  // Legacy support for old prop names
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 export const ZoomImageSection = ({
-  imageSrc,
-  imageAlt,
+  src,
+  alt,
+  type = 'image',
   overlayText,
   subText,
+  // Legacy support
+  imageSrc,
+  imageAlt,
 }: ZoomImageSectionProps) => {
   const containerRef = useRef<HTMLElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  // Support both old and new prop names
+  const mediaSrc = src || imageSrc || '';
+  const mediaAlt = alt || imageAlt || '';
+  const isVideo = type === 'video';
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
   // Image is fixed in center via sticky, scales from tiny to full size
-  // offset 'start start' means animation starts when section top hits viewport top
   const scale = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.85], [0.03, 0.3, 1, 1.1]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.15, 0.5, 0.85, 1], [0, 0.6, 1, 1, 0]);
 
@@ -32,25 +46,46 @@ export const ZoomImageSection = ({
   return (
     <section
       ref={containerRef}
-      className="relative h-[300vh] bg-background"
+      className="relative h-[300vh]"
     >
-      {/* Sticky container - image stays fixed at center while user scrolls */}
+      {/* Sticky container - media stays fixed at center while user scrolls */}
       <div className="sticky top-0 flex h-[100dvh] w-full items-center justify-center overflow-hidden">
-        {/* Image container - only scales, no vertical movement */}
+        {/* Media container - only scales, no vertical movement */}
         <motion.div
-          className="absolute flex items-center justify-center"
+          className="absolute flex items-center justify-center bg-black rounded-lg overflow-hidden"
           style={{ 
             scale, 
             opacity: imageOpacity,
             willChange: 'transform, opacity',
           }}
         >
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="h-auto max-h-[60vh] w-auto max-w-[90vw] rounded-lg object-contain shadow-2xl sm:max-h-[65vh] sm:max-w-[85vw] md:max-h-[70vh] md:max-w-[75vw]"
-            loading="lazy"
+          {/* Loading placeholder */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black z-10"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: isLoaded ? 0 : 1 }}
+            transition={{ duration: 0.4 }}
           />
+          
+          {isVideo ? (
+            <video
+              src={mediaSrc}
+              className="h-auto max-h-[60vh] w-auto max-w-[90vw] rounded-lg object-contain shadow-2xl sm:max-h-[65vh] sm:max-w-[85vw] md:max-h-[70vh] md:max-w-[75vw]"
+              autoPlay
+              muted
+              loop
+              playsInline
+              onLoadedData={() => setIsLoaded(true)}
+            />
+          ) : (
+            <img
+              src={mediaSrc}
+              alt={mediaAlt}
+              className="h-auto max-h-[60vh] w-auto max-w-[90vw] rounded-lg object-contain shadow-2xl sm:max-h-[65vh] sm:max-w-[85vw] md:max-h-[70vh] md:max-w-[75vw]"
+              loading="lazy"
+              onLoad={() => setIsLoaded(true)}
+            />
+          )}
         </motion.div>
 
         {/* Overlay text - appears after image is fully scaled */}

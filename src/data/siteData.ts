@@ -3,7 +3,19 @@
 // ============================
 
 // ============================
+// Type Definitions (Media supports both image and video)
+// ============================
+export interface MediaItemData {
+  src: string;
+  alt: string;
+  type?: 'image' | 'video';
+  ratio?: number;
+  title?: string;
+}
+
+// ============================
 // Site Metadata
+// ============================
 // ============================
 export const siteMetadata = {
   title: 'INE History | 아이네 히스토리',
