@@ -1,9 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { MediaItem, type MediaItemData } from './MediaItem';
 
-interface GalleryImage {
-  src: string;
-  alt: string;
+export interface GalleryImage extends MediaItemData {
   ratio?: number; // width/height ratio
 }
 
@@ -68,7 +67,7 @@ export const HorizontalGallerySection = ({
           {images.map((image, index) => (
             <motion.div
               key={index}
-              className="gallery-image-wrapper flex-shrink-0 overflow-hidden rounded-lg"
+              className="gallery-image-wrapper flex-shrink-0 overflow-hidden rounded-lg bg-black"
               style={{
                 width: image.ratio ? `calc(${imageHeight} * ${image.ratio})` : `${imageWidth}px`,
                 height: imageHeight,
@@ -78,10 +77,9 @@ export const HorizontalGallerySection = ({
               transition={{ duration: 0.5, delay: index * 0.03 }}
               viewport={{ once: true, margin: '-5%' }}
             >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              <MediaItem
+                media={image}
+                className="h-full w-full"
                 loading="lazy"
               />
             </motion.div>
