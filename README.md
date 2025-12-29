@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://everpurple-clone-je-cools-projects.vercel.app/
+**URL**: https://arte-randingpage.vercel.app/
 
 ## 해야할 것
 - 페이지 배경 추가하기
