@@ -34,7 +34,10 @@ export const PhotoGallerySection = ({ images, topText }: PhotoGallerySectionProp
     <>
       <section
         ref={sectionRef}
-        className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-4 py-24 md:py-32"
+        className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-24 md:py-32"
+        style={{
+          background: 'linear-gradient(180deg, hsl(270 30% 75%) 0%, hsl(275 35% 80%) 30%, hsl(280 40% 85%) 60%, hsl(275 35% 80%) 100%)',
+        }}
       >
         {topText && topText.length > 0 && (
           <motion.div
@@ -44,7 +47,7 @@ export const PhotoGallerySection = ({ images, topText }: PhotoGallerySectionProp
             {topText.map((line, index) => (
               <motion.p
                 key={index}
-                className="mb-3 font-body text-lg leading-relaxed text-foreground/90 md:text-xl"
+                className="mb-3 font-body text-lg leading-relaxed text-[hsl(270,30%,20%)] md:text-xl"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{

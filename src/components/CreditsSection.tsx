@@ -15,78 +15,82 @@ export const CreditsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-4 py-32"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-32"
+      style={{
+        background: 'linear-gradient(180deg, hsl(270 40% 12%) 0%, hsl(275 50% 18%) 30%, hsl(280 55% 25%) 60%, hsl(275 45% 20%) 100%)',
+      }}
     >
       {/* Subtle background glow */}
       <motion.div
-        className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent"
+        className="absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent"
         style={{ opacity: bgOpacity }}
       />
 
+      {/* Purple glow effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-[60vw] h-[60vh] bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.15),transparent_60%)]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vh] bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.1),transparent_60%)]" />
+      </div>
+
       <motion.div
-        className="relative z-10 text-center"
+        className="relative z-10 flex w-full max-w-6xl items-center justify-between px-8"
         style={{ scale }}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true }}
       >
+        {/* Left side - EVER PURPLE logo */}
         <motion.div
-          className="mb-12"
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 1 }}
+          className="flex flex-col items-start"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 1 }}
           viewport={{ once: true }}
         >
-          <img
-            src="https://static-assets.everpurple.kr/history/ine_history_title_c.png"
-            alt="INE History"
-            className="mx-auto h-auto w-56 opacity-80 md:w-72"
-          />
+          <div className="font-display text-4xl md:text-5xl lg:text-6xl tracking-wider text-foreground/90">
+            <span className="block italic font-light">EVER</span>
+            <span className="block italic font-light text-primary">PURPLE</span>
+          </div>
         </motion.div>
 
+        {/* Decorative line */}
         <motion.div
-          className="mb-8 h-px w-32 mx-auto bg-gradient-to-r from-transparent via-foreground/30 to-transparent"
+          className="hidden md:block h-px flex-1 mx-12 bg-gradient-to-r from-transparent via-foreground/20 to-transparent"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
           viewport={{ once: true }}
         />
 
-        <motion.p
-          className="mb-4 font-display text-2xl text-foreground md:text-3xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          감사합니다
-        </motion.p>
-
-        <motion.p
-          className="font-body text-base text-muted-foreground md:text-lg"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          Thank you for experiencing INE History
-        </motion.p>
-
+        {/* Right side - INE History */}
         <motion.div
-          className="mt-20 flex flex-col items-center gap-3"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
+          className="flex flex-col items-end"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.4, duration: 1 }}
           viewport={{ once: true }}
         >
-          <p className="text-xs text-muted-foreground/60">
-            Clone coding project
-          </p>
-          <p className="text-xs text-muted-foreground/60">
-            Original: everpurple.kr/ine
-          </p>
+          <div className="font-display text-4xl md:text-5xl lg:text-6xl tracking-wider text-foreground/90">
+            <span className="block text-right">INE History</span>
+          </div>
         </motion.div>
+      </motion.div>
+
+      {/* Bottom credits text */}
+      <motion.div
+        className="absolute bottom-12 left-0 right-0 text-center"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <p className="text-xs text-muted-foreground/60 mb-2">
+          © 에버퍼플 All rights reserved.
+        </p>
+        <p className="text-xs text-muted-foreground/40">
+          Clone coding project • Original: everpurple.kr/ine
+        </p>
       </motion.div>
     </section>
   );

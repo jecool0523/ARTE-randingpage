@@ -55,8 +55,8 @@ export const HorizontalGallerySection = ({
   return (
     <section
       ref={containerRef}
-      className="relative bg-background"
-      style={{ height: isMobile ? '300vh' : height }}
+      className="relative"
+      style={{ height: isMobile ? '300vh' : height, background: 'transparent' }}
     >
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
         {/* Gallery */}

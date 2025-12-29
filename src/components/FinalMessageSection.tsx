@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 interface FinalMessageSectionProps {
-  backgroundImage: string;
+  backgroundImage?: string;
   lines: string[];
 }
 
@@ -22,18 +22,39 @@ export const FinalMessageSection = ({ backgroundImage, lines }: FinalMessageSect
       ref={sectionRef}
       className="relative flex min-h-[150vh] flex-col items-center justify-center overflow-hidden"
     >
-      {/* Background image */}
+      {/* Dynamic purple gradient background with silhouette effect */}
       <motion.div
         className="absolute inset-0"
         style={{ scale: bgScale }}
       >
-        <img
-          src={backgroundImage}
-          alt="Background"
-          className="h-full w-full object-cover"
-          loading="lazy"
+        {/* Base purple gradient - matches original site */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, hsl(265 50% 8%) 0%, hsl(275 60% 15%) 20%, hsl(280 70% 45%) 50%, hsl(285 65% 55%) 70%, hsl(275 55% 40%) 100%)',
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        
+        {/* Purple glow effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[120vw] h-[80vh] bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.4),transparent_60%)]" />
+          <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[100vw] h-[60vh] bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.3),transparent_50%)]" />
+        </div>
+
+        {/* Silhouette overlay from original if provided */}
+        {backgroundImage && (
+          <>
+            <img
+              src={backgroundImage}
+              alt="Background"
+              className="absolute inset-0 h-full w-full object-cover mix-blend-overlay opacity-30"
+              loading="lazy"
+            />
+          </>
+        )}
+
+        {/* Top and bottom fade */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(270,40%,8%)]/80 via-transparent to-[hsl(270,40%,8%)]/60" />
       </motion.div>
 
       {/* Text content */}
@@ -44,7 +65,7 @@ export const FinalMessageSection = ({ backgroundImage, lines }: FinalMessageSect
         {lines.map((line, index) => (
           <motion.h3
             key={index}
-            className="mb-4 font-display text-xl leading-relaxed text-foreground md:mb-6 md:text-2xl lg:text-3xl"
+            className="mb-4 font-display text-xl leading-relaxed text-white md:mb-6 md:text-2xl lg:text-3xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{

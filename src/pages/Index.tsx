@@ -116,6 +116,7 @@ const Index = () => {
           '그전까지 제게 노래는 그저 "들려주는 것"이었는데,',
           '이세돌 활동을 하며 노래가 사람을 "잇는다는 것"을 실감하게 되었어요.',
         ]}
+        variant="purple"
       />
 
       <ParallaxTextSection
@@ -124,6 +125,7 @@ const Index = () => {
           '아이네와 이세돌의 노래 역시 누군가에게는 재미있는 이야기가,',
           '누군가에게는 위로가 된다는 점이 감사하고 기뻤습니다.',
         ]}
+        variant="bright-purple"
       />
 
       <SectionDivider type="gradient" fromColor="transparent" toColor="hsl(260, 15%, 6%)" />
@@ -174,6 +176,7 @@ const Index = () => {
           '누군가가 저를 노래로 만났듯이,',
           '저 역시 노래로 많은 사람과 인연이 닿아 만날 수 있었어요.',
         ]}
+        variant="purple"
       />
 
       {/* Webtoon images */}
@@ -193,6 +196,7 @@ const Index = () => {
           '그리고 사람들과의 이야기는,',
           '새로운 영감으로 제게 다가와 다시 음악이 되었습니다.',
         ]}
+        variant="bright-purple"
       />
 
       <ImageRevealSection
@@ -210,6 +214,7 @@ const Index = () => {
           '왁타버스에서 새로운 이야기로, 함께하는 유대로,',
           '다시 노래로 이어지며 점차 저의, "아이네"의 세계를 넓혀갔습니다.',
         ]}
+        variant="purple"
       />
 
       <ImageRevealSection
@@ -254,6 +259,7 @@ const Index = () => {
           '노래뿐만이 아니라, 아이네의 이야기를,',
           '더 나아가 \'아이네\' 자체를 좋아하는 사람들이 생겼습니다.',
         ]}
+        variant="deep-purple"
       />
 
       <FanStorySection
@@ -284,6 +290,7 @@ const Index = () => {
           '한결같이 수많은 응원과 사랑을 보내주는 팬분들께 어떻게 보답할 수 있을까 고민한 끝에,',
           '\'지친 하루에 잠깐의 쉼과 위로를 나눌 수 있는 아이돌이자 방송인\'이 되자고 결심했어요.',
         ]}
+        variant="dark"
       />
 
       {/* Concert images */}

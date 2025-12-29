@@ -30,7 +30,8 @@ export const StreamingSection = ({ images, text }: StreamingSectionProps) => {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
+      style={{ background: 'transparent' }}
     >
       {/* Background images with crossfade */}
       <div className="absolute inset-0">

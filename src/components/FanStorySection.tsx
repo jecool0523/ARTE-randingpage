@@ -21,7 +21,8 @@ export const FanStorySection = ({ images, topText, bottomText }: FanStorySection
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-4 py-24 md:py-32"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-24 md:py-32"
+      style={{ background: 'transparent' }}
     >
       {topText && (
         <motion.p
