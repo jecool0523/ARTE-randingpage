@@ -15,7 +15,8 @@ export const DisclaimerSection = () => {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-screen flex-col items-center justify-center bg-background px-4 py-32"
+      className="relative flex min-h-screen flex-col items-center justify-center px-4 py-32"
+      style={{ background: 'transparent' }}
     >
       <motion.div
         className="text-center"

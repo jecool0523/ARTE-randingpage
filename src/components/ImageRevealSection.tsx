@@ -26,7 +26,8 @@ export const ImageRevealSection = ({
     return (
       <section
         ref={containerRef}
-        className="relative flex min-h-screen items-center justify-center bg-background px-4 py-32"
+        className="relative flex min-h-screen items-center justify-center px-4 py-32"
+        style={{ background: 'transparent' }}
       >
         <motion.div
           className="flex flex-wrap items-center justify-center gap-4 md:gap-8"
@@ -69,7 +70,8 @@ export const ImageRevealSection = ({
     return (
       <section
         ref={containerRef}
-        className="relative min-h-screen bg-background py-32"
+        className="relative min-h-screen py-32"
+        style={{ background: 'transparent' }}
       >
         <motion.div
           className="flex flex-col items-center gap-16"
@@ -115,7 +117,8 @@ export const ImageRevealSection = ({
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-background px-4 py-32"
+      className="relative min-h-screen px-4 py-32"
+      style={{ background: 'transparent' }}
     >
       <motion.div
         className="mx-auto grid max-w-6xl grid-cols-2 gap-4 md:grid-cols-3 lg:gap-8"

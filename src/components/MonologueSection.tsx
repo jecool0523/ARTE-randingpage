@@ -4,19 +4,33 @@ import { useRef } from 'react';
 interface MonologueSectionProps {
   lines: string[];
   className?: string;
+  variant?: 'dark' | 'purple' | 'bright-purple' | 'deep-purple' | 'default';
 }
 
-export const MonologueSection = ({ lines, className = '' }: MonologueSectionProps) => {
+export const MonologueSection = ({ lines, className = '', variant = 'default' }: MonologueSectionProps) => {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   });
 
+  // 원본 사이트의 다양한 배경 스타일
+  const variantStyles: Record<string, string> = {
+    'default': 'bg-background',
+    'dark': 'bg-[hsl(270,20%,8%)]',
+    'purple': 'bg-[hsl(270,60%,55%)]',
+    'bright-purple': 'bg-[hsl(275,70%,60%)]',
+    'deep-purple': 'bg-[hsl(265,40%,12%)]',
+  };
+
+  const textColorClass = variant === 'purple' || variant === 'bright-purple' 
+    ? 'text-white' 
+    : 'text-text-body';
+
   return (
     <section
       ref={ref}
-      className={`relative flex min-h-[80vh] flex-col items-center justify-center bg-background px-4 py-16 md:min-h-screen md:py-32 ${className}`}
+      className={`relative flex min-h-[80vh] flex-col items-center justify-center px-4 py-16 md:min-h-screen md:py-32 ${variantStyles[variant]} ${className}`}
     >
       {/* Subtle background glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsla(var(--primary)/0.03)_0%,transparent_70%)]" />
@@ -34,6 +48,7 @@ export const MonologueSection = ({ lines, className = '' }: MonologueSectionProp
               start={start}
               end={end}
               index={index}
+              textColorClass={textColorClass}
             />
           );
         })}
@@ -48,9 +63,10 @@ interface MonologueLineProps {
   start: number;
   end: number;
   index: number;
+  textColorClass?: string;
 }
 
-const MonologueLine = ({ line, scrollProgress, start, end, index }: MonologueLineProps) => {
+const MonologueLine = ({ line, scrollProgress, start, end, textColorClass = 'text-text-body' }: MonologueLineProps) => {
   const opacity = useTransform(
     scrollProgress,
     [start, start + 0.08, end - 0.08, end],
@@ -75,7 +91,7 @@ const MonologueLine = ({ line, scrollProgress, start, end, index }: MonologueLin
 
   return (
     <motion.p
-      className="text-base font-light leading-relaxed text-text-body md:text-lg lg:text-2xl"
+      className={`text-base font-light leading-relaxed md:text-lg lg:text-2xl ${textColorClass}`}
       style={{ opacity, y, scale, filter }}
     >
       {line}
