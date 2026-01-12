@@ -86,7 +86,7 @@ const Index = () => {
         images={galleryImages1}
         description="노래를 부르는 것은, 저에게는 눈을 뜨고 숨을 쉬는 것처럼 너무나 당연한 것이었습니다. 아주 어렸을 때부터 디즈니 영화와 뮤지컬을 보고 들으며, 멜로디와 함께 노래에 담긴 감정들을 느끼고 이해하는 과정이 정말 즐거웠어요."
         linkText="뮤직비디오 시청하기"
-        title="「God knows...」 스즈미야 하루히의 우울 OST (Cover by 아이네 INE)"
+        title="「Seasons of love」뮤지컬 rent  (Cover by 아르떼 arte)"
         height="500vh"
       />
 
@@ -104,13 +104,13 @@ const Index = () => {
       <ZoomImageSection
         imageSrc="https://static-assets.everpurple.kr/history/images/07/Rewind_img_01.png"
         imageAlt="Rewind"
-        overlayText="그러다 '이세계아이돌'이라는 기회를 만나게 되었습니다."
-        subText="노래로 만나게 된 새로운 세상이었습니다."
+        overlayText="그러다 '아르떼'이라는 기회를 만나게 되었습니다."
+        subText="무대로 만나게 된 새로운 세상이었습니다."
       />
 
       {/* Text section */}
       <ParallaxTextSection
-        heading="이세계 아이돌을 만난 첫번째 기적"
+        heading="아르떼를 만난 첫번째 기적"
         lines={[
           '어느새 저는 "내가 느꼈던 노래에 대한 모든 것과 노래를 통해 경험한 행복을 다른 사람과 함께 할 수 있다면 정말 좋겠다"고 생각하게 되었습니다.',
           '그전까지 제게 노래는 그저 "들려주는 것"이었는데,',
@@ -121,8 +121,8 @@ const Index = () => {
 
       <ParallaxTextSection
         lines={[
-          '어렸을 적의 제가 디즈니와 뮤지컬을 통해 위로와 즐거움을 느꼈던 것처럼,',
-          '아이네와 이세돌의 노래 역시 누군가에게는 재미있는 이야기가,',
+          '어렸을 적의 제가 연극과 뮤지컬을 통해 위로와 즐거움을 느꼈던 것처럼,',
+          '아르떼의 노래 역시 누군가에게는 재미있는 이야기가,',
           '누군가에게는 위로가 된다는 점이 감사하고 기뻤습니다.',
         ]}
         variant="bright-purple"
