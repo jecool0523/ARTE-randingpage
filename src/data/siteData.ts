@@ -5,6 +5,8 @@
 // ============================
 // Import Assets
 // ============================
+export const backgroundMusicUrl = 'https://static-assets.everpurple.kr/history/ine_history_bgm.mp3';
+// 또는 로컬 파일 사용 시: import bgm from '@/assets/bgm.mp3';
 import arteStage01 from '@/assets/arte_stage_01.jpg';
 import arteCurtainCall from '@/assets/arte_curtain_call.jpg';
 import arteTheaterSeats from '@/assets/arte_theater_seats.jpg';
