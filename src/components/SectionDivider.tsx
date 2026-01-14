@@ -1,5 +1,5 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 interface SectionDividerProps {
   type?: 'line' | 'gradient' | 'fade';
@@ -8,12 +8,12 @@ interface SectionDividerProps {
   showLine?: boolean;
 }
 
-export const SectionDivider = ({
+export const SectionDivider = memo(function SectionDivider({
   type = 'line',
   fromColor = 'hsl(var(--background))',
   toColor = 'hsl(var(--background))',
   showLine = true,
-}: SectionDividerProps) => {
+}: SectionDividerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -63,4 +63,4 @@ export const SectionDivider = ({
       )}
     </div>
   );
-};
+});

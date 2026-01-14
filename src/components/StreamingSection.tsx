@@ -1,12 +1,12 @@
+import { memo, useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
 
 interface StreamingSectionProps {
   images: string[];
   text: string;
 }
 
-export const StreamingSection = ({ images, text }: StreamingSectionProps) => {
+export const StreamingSection = memo(function StreamingSection({ images, text }: StreamingSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   
@@ -87,4 +87,4 @@ export const StreamingSection = ({ images, text }: StreamingSectionProps) => {
       </div>
     </section>
   );
-};
+});

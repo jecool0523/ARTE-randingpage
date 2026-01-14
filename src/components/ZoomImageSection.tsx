@@ -1,5 +1,5 @@
+import { memo, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
 
 interface ZoomImageSectionProps {
   src?: string;
@@ -12,16 +12,15 @@ interface ZoomImageSectionProps {
   imageAlt?: string;
 }
 
-export const ZoomImageSection = ({
+export const ZoomImageSection = memo(function ZoomImageSection({
   src,
   alt,
   type = 'image',
   overlayText,
   subText,
-  // Legacy support
   imageSrc,
   imageAlt,
-}: ZoomImageSectionProps) => {
+}: ZoomImageSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
@@ -109,4 +108,4 @@ export const ZoomImageSection = ({
       </div>
     </section>
   );
-};
+});

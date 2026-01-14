@@ -1,5 +1,5 @@
+import { memo, useRef, useState, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface PhotoGallerySectionProps {
@@ -7,7 +7,7 @@ interface PhotoGallerySectionProps {
   topText?: string[];
 }
 
-export const PhotoGallerySection = ({ images, topText }: PhotoGallerySectionProps) => {
+export const PhotoGallerySection = memo(function PhotoGallerySection({ images, topText }: PhotoGallerySectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   
@@ -18,17 +18,17 @@ export const PhotoGallerySection = ({ images, topText }: PhotoGallerySectionProp
 
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     if (selectedImage !== null) {
       setSelectedImage(selectedImage === 0 ? images.length - 1 : selectedImage - 1);
     }
-  };
+  }, [selectedImage, images.length]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (selectedImage !== null) {
       setSelectedImage(selectedImage === images.length - 1 ? 0 : selectedImage + 1);
     }
-  };
+  }, [selectedImage, images.length]);
 
   return (
     <>
@@ -152,4 +152,4 @@ export const PhotoGallerySection = ({ images, topText }: PhotoGallerySectionProp
       )}
     </>
   );
-};
+});

@@ -1,5 +1,5 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 interface TripleImageSectionProps {
   images: Array<{
@@ -11,12 +11,12 @@ interface TripleImageSectionProps {
   title?: string;
 }
 
-export const TripleImageSection = ({
+export const TripleImageSection = memo(function TripleImageSection({
   images,
   topText,
   bottomText,
   title,
-}: TripleImageSectionProps) => {
+}: TripleImageSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -102,4 +102,4 @@ export const TripleImageSection = ({
       )}
     </section>
   );
-};
+});

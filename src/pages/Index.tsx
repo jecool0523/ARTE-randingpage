@@ -1,24 +1,29 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, lazy, Suspense } from 'react';
 import { useLenis } from '@/hooks/useLenis';
+
+// Critical above-the-fold components (loaded immediately)
 import { LandingSection } from '@/components/LandingSection';
 import { DisclaimerSection } from '@/components/DisclaimerSection';
-import { MonologueSection } from '@/components/MonologueSection';
-import { HorizontalGallerySection } from '@/components/HorizontalGallerySection';
-import { ZoomImageSection } from '@/components/ZoomImageSection';
-import { ParallaxTextSection } from '@/components/ParallaxTextSection';
-import { TripleImageSection } from '@/components/TripleImageSection';
-import { ImageRevealSection } from '@/components/ImageRevealSection';
-import { CreditsSection } from '@/components/CreditsSection';
-import { BackgroundMusic } from '@/components/BackgroundMusic';
-import { ScrollProgress } from '@/components/ScrollProgress';
-import { Navigation } from '@/components/Navigation';
-import { FanStorySection } from '@/components/FanStorySection';
-import { StreamingSection } from '@/components/StreamingSection';
-import { ConcertGallerySection } from '@/components/ConcertGallerySection';
-import { PhotoGallerySection } from '@/components/PhotoGallerySection';
-import { FinalMessageSection } from '@/components/FinalMessageSection';
-import { SectionDivider } from '@/components/SectionDivider';
 import { DynamicBackground } from '@/components/DynamicBackground';
+import { ScrollProgress } from '@/components/ScrollProgress';
+import { BackgroundMusic } from '@/components/BackgroundMusic';
+import { Navigation } from '@/components/Navigation';
+import { SectionWrapper, DIVIDERS } from '@/components/SectionWrapper';
+import { SectionDivider } from '@/components/SectionDivider';
+
+// Lazy-loaded components (below-the-fold)
+const MonologueSection = lazy(() => import('@/components/MonologueSection').then(m => ({ default: m.MonologueSection })));
+const HorizontalGallerySection = lazy(() => import('@/components/HorizontalGallerySection').then(m => ({ default: m.HorizontalGallerySection })));
+const ZoomImageSection = lazy(() => import('@/components/ZoomImageSection').then(m => ({ default: m.ZoomImageSection })));
+const ParallaxTextSection = lazy(() => import('@/components/ParallaxTextSection').then(m => ({ default: m.ParallaxTextSection })));
+const TripleImageSection = lazy(() => import('@/components/TripleImageSection').then(m => ({ default: m.TripleImageSection })));
+const ImageRevealSection = lazy(() => import('@/components/ImageRevealSection').then(m => ({ default: m.ImageRevealSection })));
+const FanStorySection = lazy(() => import('@/components/FanStorySection').then(m => ({ default: m.FanStorySection })));
+const StreamingSection = lazy(() => import('@/components/StreamingSection').then(m => ({ default: m.StreamingSection })));
+const ConcertGallerySection = lazy(() => import('@/components/ConcertGallerySection').then(m => ({ default: m.ConcertGallerySection })));
+const PhotoGallerySection = lazy(() => import('@/components/PhotoGallerySection').then(m => ({ default: m.PhotoGallerySection })));
+const FinalMessageSection = lazy(() => import('@/components/FinalMessageSection').then(m => ({ default: m.FinalMessageSection })));
+const CreditsSection = lazy(() => import('@/components/CreditsSection').then(m => ({ default: m.CreditsSection })));
 
 // Data imports from centralized siteData
 import {
@@ -50,6 +55,13 @@ import {
   finalMessageData,
 } from '@/data/siteData';
 
+// Loading fallback for lazy components
+const SectionLoader = () => (
+  <div className="flex min-h-[50vh] items-center justify-center">
+    <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+  </div>
+);
+
 const Index = () => {
   const lenisRef = useLenis();
 
@@ -79,204 +91,206 @@ const Index = () => {
       <BackgroundMusic />
       <Navigation />
 
-      {/* Landing */}
+      {/* Landing (Critical - Above the fold) */}
       <LandingSection onStart={handleStart} />
 
       {/* Disclaimer */}
       <DisclaimerSection />
 
-      {/* Opening monologue */}
-      <MonologueSection lines={monologueTexts.opening} />
+      {/* Lazy-loaded content sections */}
+      <Suspense fallback={<SectionLoader />}>
+        {/* Opening Sequence */}
+        <MonologueSection lines={monologueTexts.opening} />
+        
+        <SectionWrapper dividerBefore={DIVIDERS.line}>
+          <MonologueSection lines={monologueTexts.openingContinue} />
+        </SectionWrapper>
 
-      <SectionDivider type="line" />
+        {/* Gallery Sequence */}
+        <SectionDivider type="gradient" fromColor="hsl(20, 10%, 8%)" toColor="transparent" />
+        
+        <HorizontalGallerySection
+          images={galleryImages1}
+          description={horizontalGalleryData.first.description}
+          linkText={horizontalGalleryData.first.linkText}
+          title={horizontalGalleryData.first.title}
+          height="500vh"
+        />
 
-      <MonologueSection lines={monologueTexts.openingContinue} />
+        <SectionWrapper dividerBefore={DIVIDERS.transparent}>
+          <HorizontalGallerySection images={galleryImages2} height="500vh" />
+        </SectionWrapper>
 
-      <SectionDivider type="gradient" fromColor="hsl(20, 10%, 8%)" toColor="transparent" />
+        {/* Rewind Sequence */}
+        <SectionWrapper dividerBefore={DIVIDERS.line}>
+          <ZoomImageSection
+            imageSrc={zoomImageData.rewind.src}
+            imageAlt={zoomImageData.rewind.alt}
+            overlayText={zoomImageData.rewind.overlayText}
+            subText={zoomImageData.rewind.subText}
+          />
+        </SectionWrapper>
 
-      {/* First horizontal gallery */}
-      <HorizontalGallerySection
-        images={galleryImages1}
-        description={horizontalGalleryData.first.description}
-        linkText={horizontalGalleryData.first.linkText}
-        title={horizontalGalleryData.first.title}
-        height="500vh"
-      />
+        {/* First Miracle Text */}
+        <ParallaxTextSection
+          heading={parallaxTexts.firstMiracle.heading}
+          lines={parallaxTexts.firstMiracle.lines}
+          variant="purple"
+        />
 
-      <SectionDivider type="gradient" fromColor="transparent" toColor="transparent" />
+        <ParallaxTextSection
+          lines={parallaxTexts.firstMiracleContinue.lines}
+          variant="bright-purple"
+        />
 
-      {/* Second horizontal gallery */}
-      <HorizontalGallerySection images={galleryImages2} height="500vh" />
+        {/* Singles Zoom */}
+        <SectionWrapper 
+          dividerBefore={DIVIDERS.gradientToDark('hsl(260, 15%, 6%)')}
+          dividerAfter={DIVIDERS.line}
+        >
+          <ZoomImageSection
+            imageSrc={zoomImageData.singles.src}
+            imageAlt={zoomImageData.singles.alt}
+          />
+        </SectionWrapper>
 
-      <SectionDivider type="line" />
+        {/* Triple Image Sequence */}
+        <TripleImageSection
+          images={anotherWorldImages}
+          topText={tripleImageData.anotherWorld.topText}
+          title={tripleImageData.anotherWorld.title}
+        />
 
-      {/* Zoom image with text - Rewind */}
-      <ZoomImageSection
-        imageSrc={zoomImageData.rewind.src}
-        imageAlt={zoomImageData.rewind.alt}
-        overlayText={zoomImageData.rewind.overlayText}
-        subText={zoomImageData.rewind.subText}
-      />
+        <TripleImageSection
+          images={showdownImages}
+          topText={tripleImageData.showdown.topText}
+          title={tripleImageData.showdown.title}
+        />
 
-      {/* Text section - First Miracle */}
-      <ParallaxTextSection
-        heading={parallaxTexts.firstMiracle.heading}
-        lines={parallaxTexts.firstMiracle.lines}
-        variant="purple"
-      />
+        <TripleImageSection
+          images={lockdownImages}
+          topText={tripleImageData.lockdown.topText}
+          title={tripleImageData.lockdown.title}
+        />
 
-      <ParallaxTextSection
-        lines={parallaxTexts.firstMiracleContinue.lines}
-        variant="bright-purple"
-      />
+        {/* Another World Zoom */}
+        <SectionWrapper 
+          dividerBefore={DIVIDERS.gradientFromDark('hsl(260, 15%, 6%)')}
+          dividerAfter={DIVIDERS.line}
+        >
+          <ZoomImageSection
+            imageSrc={zoomImageData.anotherWorld.src}
+            imageAlt={zoomImageData.anotherWorld.alt}
+            overlayText={zoomImageData.anotherWorld.overlayText}
+            subText={zoomImageData.anotherWorld.subText}
+          />
+        </SectionWrapper>
 
-      <SectionDivider type="gradient" fromColor="transparent" toColor="hsl(260, 15%, 6%)" />
+        {/* Dimension Text + Images */}
+        <ParallaxTextSection
+          heading={parallaxTexts.dimension.heading}
+          lines={parallaxTexts.dimension.lines}
+          variant="purple"
+        />
 
-      {/* Singles zoom */}
-      <ZoomImageSection
-        imageSrc={zoomImageData.singles.src}
-        imageAlt={zoomImageData.singles.alt}
-      />
+        <ImageRevealSection images={webtoonImages} layout="row" />
 
-      <SectionDivider type="line" />
+        <ParallaxTextSection
+          heading={parallaxTexts.trafficLight.heading}
+          lines={parallaxTexts.trafficLight.lines}
+          variant="bright-purple"
+        />
 
-      {/* Triple image sections */}
-      <TripleImageSection
-        images={anotherWorldImages}
-        topText={tripleImageData.anotherWorld.topText}
-        title={tripleImageData.anotherWorld.title}
-      />
+        <ImageRevealSection images={trafficLightImages} layout="row" />
 
-      <TripleImageSection
-        images={showdownImages}
-        topText={tripleImageData.showdown.topText}
-        title={tripleImageData.showdown.title}
-      />
+        <ParallaxTextSection
+          heading={parallaxTexts.mashup.heading}
+          lines={parallaxTexts.mashup.lines}
+          variant="purple"
+        />
 
-      <TripleImageSection
-        images={lockdownImages}
-        topText={tripleImageData.lockdown.topText}
-        title={tripleImageData.lockdown.title}
-      />
+        <ImageRevealSection images={mashupImages} layout="row" />
 
-      <SectionDivider type="gradient" fromColor="hsl(260, 15%, 6%)" toColor="transparent" />
+        {/* Festival Sequence */}
+        <SectionWrapper 
+          dividerBefore={DIVIDERS.gradientToDark('hsl(280, 20%, 5%)')}
+          dividerAfter={DIVIDERS.line}
+        >
+          <ZoomImageSection
+            imageSrc={zoomImageData.festival.src}
+            imageAlt={zoomImageData.festival.alt}
+            overlayText={zoomImageData.festival.overlayText}
+            subText={zoomImageData.festival.subText}
+          />
+        </SectionWrapper>
 
-      {/* Another World zoom */}
-      <ZoomImageSection
-        imageSrc={zoomImageData.anotherWorld.src}
-        imageAlt={zoomImageData.anotherWorld.alt}
-        overlayText={zoomImageData.anotherWorld.overlayText}
-        subText={zoomImageData.anotherWorld.subText}
-      />
+        <ImageRevealSection images={festivalImages} layout="grid" />
 
-      <SectionDivider type="line" />
+        {/* Fan Story Sequence */}
+        <SectionWrapper 
+          dividerBefore={DIVIDERS.gradientFromDark('hsl(280, 20%, 5%)')}
+          dividerAfter={DIVIDERS.line}
+        >
+          <ZoomImageSection
+            imageSrc={zoomImageData.rewindMin.src}
+            imageAlt={zoomImageData.rewindMin.alt}
+          />
+        </SectionWrapper>
 
-      {/* Text with heading - Dimension */}
-      <ParallaxTextSection
-        heading={parallaxTexts.dimension.heading}
-        lines={parallaxTexts.dimension.lines}
-        variant="purple"
-      />
+        <MonologueSection lines={monologueTexts.fanStory} variant="deep-purple" />
 
-      {/* Webtoon images */}
-      <ImageRevealSection images={webtoonImages} layout="row" />
+        <FanStorySection
+          images={fanImages}
+          topText={fanStorySectionData.topText}
+        />
 
-      {/* Traffic light section */}
-      <ParallaxTextSection
-        heading={parallaxTexts.trafficLight.heading}
-        lines={parallaxTexts.trafficLight.lines}
-        variant="bright-purple"
-      />
+        {/* Streaming Section */}
+        <SectionWrapper 
+          dividerBefore={DIVIDERS.gradientToDark('hsl(220, 15%, 6%)')}
+          dividerAfter={DIVIDERS.gradientFromDark('hsl(220, 15%, 6%)')}
+        >
+          <StreamingSection
+            images={streamingImages}
+            text={streamingSectionData.text}
+          />
+        </SectionWrapper>
 
-      <ImageRevealSection images={trafficLightImages} layout="row" />
+        {/* Concert Sequence */}
+        <SectionWrapper dividerAfter={DIVIDERS.line}>
+          <ImageRevealSection images={concertImages1} layout="stacked" />
+        </SectionWrapper>
 
-      {/* Mashup section */}
-      <ParallaxTextSection
-        heading={parallaxTexts.mashup.heading}
-        lines={parallaxTexts.mashup.lines}
-        variant="purple"
-      />
+        <MonologueSection lines={monologueTexts.concert} variant="dark" />
 
-      <ImageRevealSection images={mashupImages} layout="row" />
+        <ImageRevealSection images={concertImages2} layout="stacked" />
 
-      <SectionDivider type="gradient" fromColor="transparent" toColor="hsl(280, 20%, 5%)" />
+        <ConcertGallerySection
+          images={concertImages3}
+          topText={concertGallerySectionData.first.topText}
+        />
 
-      {/* Festival zoom */}
-      <ZoomImageSection
-        imageSrc={zoomImageData.festival.src}
-        imageAlt={zoomImageData.festival.alt}
-        overlayText={zoomImageData.festival.overlayText}
-        subText={zoomImageData.festival.subText}
-      />
+        <ConcertGallerySection images={concertImages4} />
 
-      <SectionDivider type="line" />
+        {/* Photo Gallery */}
+        <SectionWrapper 
+          dividerBefore={DIVIDERS.gradientToDark('hsl(270, 25%, 4%)')}
+          dividerAfter={DIVIDERS.gradientFromDark('hsl(270, 25%, 4%)')}
+        >
+          <PhotoGallerySection
+            images={photoGalleryImages}
+            topText={photoGallerySectionData.topText}
+          />
+        </SectionWrapper>
 
-      {/* Festival images grid */}
-      <ImageRevealSection images={festivalImages} layout="grid" />
+        {/* Final Message */}
+        <FinalMessageSection
+          backgroundImage={finalMessageData.backgroundImage}
+          lines={finalMessageData.lines}
+        />
 
-      <SectionDivider type="gradient" fromColor="hsl(280, 20%, 5%)" toColor="transparent" />
-
-      {/* Rewind zoom */}
-      <ZoomImageSection
-        imageSrc={zoomImageData.rewindMin.src}
-        imageAlt={zoomImageData.rewindMin.alt}
-      />
-
-      <SectionDivider type="line" />
-
-      {/* Fan story section */}
-      <MonologueSection lines={monologueTexts.fanStory} variant="deep-purple" />
-
-      <FanStorySection
-        images={fanImages}
-        topText={fanStorySectionData.topText}
-      />
-
-      <SectionDivider type="gradient" fromColor="transparent" toColor="hsl(220, 15%, 6%)" />
-
-      {/* Streaming/Broadcasting section */}
-      <StreamingSection
-        images={streamingImages}
-        text={streamingSectionData.text}
-      />
-
-      <SectionDivider type="gradient" fromColor="hsl(220, 15%, 6%)" toColor="transparent" />
-
-      {/* Concert section intro */}
-      <ImageRevealSection images={concertImages1} layout="stacked" />
-
-      <SectionDivider type="line" />
-
-      <MonologueSection lines={monologueTexts.concert} variant="dark" />
-
-      {/* Concert images */}
-      <ImageRevealSection images={concertImages2} layout="stacked" />
-
-      <ConcertGallerySection
-        images={concertImages3}
-        topText={concertGallerySectionData.first.topText}
-      />
-
-      <ConcertGallerySection images={concertImages4} />
-
-      <SectionDivider type="gradient" fromColor="transparent" toColor="hsl(270, 25%, 4%)" />
-
-      {/* Photo gallery */}
-      <PhotoGallerySection
-        images={photoGalleryImages}
-        topText={photoGallerySectionData.topText}
-      />
-
-      <SectionDivider type="gradient" fromColor="hsl(270, 25%, 4%)" toColor="transparent" />
-
-      {/* Final message */}
-      <FinalMessageSection
-        backgroundImage={finalMessageData.backgroundImage}
-        lines={finalMessageData.lines}
-      />
-
-      {/* Credits */}
-      <CreditsSection />
+        {/* Credits */}
+        <CreditsSection />
+      </Suspense>
     </main>
   );
 };
