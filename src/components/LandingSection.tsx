@@ -54,8 +54,8 @@ export const LandingSection = ({ onStart }: LandingSectionProps) => {
           className="mb-6 md:mb-8"
         >
           <img
-            src="https://static-assets.everpurple.kr/history/ine_history_title_c.png"
-            alt="INE History"
+            src={landingData.titleImage}
+            alt="ARTE story"
             className="h-auto w-[200px] drop-shadow-2xl sm:w-[280px] md:w-[400px] lg:w-[500px]"
           />
         </motion.div>
