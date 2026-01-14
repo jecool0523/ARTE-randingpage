@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import { useRef } from 'react';
+import { landingData } from '@/data/siteData';
 
 interface LandingSectionProps {
   onStart: () => void;
@@ -29,7 +30,7 @@ export const LandingSection = ({ onStart }: LandingSectionProps) => {
         style={{ scale }}
       >
         <motion.img
-          src="https://static-assets.everpurple.kr/history/ine_history_landing_background.png?1"
+          src={landingData.backgroundImage}
           alt="Landing background"
           className="h-full w-full object-cover object-center"
           initial={{ scale: 1.1 }}
@@ -65,7 +66,7 @@ export const LandingSection = ({ onStart }: LandingSectionProps) => {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="mb-6 text-center font-body text-base text-text-body md:mb-8 md:text-lg lg:text-xl"
         >
-          히스토리 페이지에 오신 것을 환영합니다.
+          {landingData.welcomeText}
         </motion.p>
 
         <motion.button
@@ -77,7 +78,7 @@ export const LandingSection = ({ onStart }: LandingSectionProps) => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <span className="text-sm md:text-base">관람 시작하기</span>
+          <span className="text-sm md:text-base">{landingData.buttonText}</span>
           <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
         </motion.button>
 
@@ -87,7 +88,7 @@ export const LandingSection = ({ onStart }: LandingSectionProps) => {
           transition={{ delay: 0.9, duration: 0.8 }}
           className="mt-8 max-w-xs text-center font-body text-xs text-muted-foreground md:mt-16 md:max-w-none md:text-sm"
         >
-          아이네에 대한 이야기를 몰입형 전시와 함께 감상해보세요.
+          {landingData.subText}
         </motion.p>
       </motion.div>
 
