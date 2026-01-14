@@ -1,5 +1,5 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 interface MonologueSectionProps {
   lines: string[];
@@ -7,7 +7,7 @@ interface MonologueSectionProps {
   variant?: 'dark' | 'purple' | 'bright-purple' | 'deep-purple' | 'default';
 }
 
-export const MonologueSection = ({ lines, className = '', variant = 'default' }: MonologueSectionProps) => {
+export const MonologueSection = memo(function MonologueSection({ lines, className = '', variant = 'default' }: MonologueSectionProps) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -55,7 +55,7 @@ export const MonologueSection = ({ lines, className = '', variant = 'default' }:
       </div>
     </section>
   );
-};
+});
 
 interface MonologueLineProps {
   line: string;

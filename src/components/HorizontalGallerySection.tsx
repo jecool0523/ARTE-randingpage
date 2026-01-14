@@ -1,5 +1,5 @@
+import { memo, useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
 import { MediaItem, type MediaItemData } from './MediaItem';
 
 export interface GalleryImage extends MediaItemData {
@@ -14,13 +14,13 @@ interface HorizontalGallerySectionProps {
   height?: string;
 }
 
-export const HorizontalGallerySection = ({
+export const HorizontalGallerySection = memo(function HorizontalGallerySection({
   images,
   description,
   title,
   linkText,
   height = '400vh',
-}: HorizontalGallerySectionProps) => {
+}: HorizontalGallerySectionProps) {
   const containerRef = useRef<HTMLElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -112,4 +112,4 @@ export const HorizontalGallerySection = ({
       </div>
     </section>
   );
-};
+});

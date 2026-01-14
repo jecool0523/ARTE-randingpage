@@ -1,5 +1,5 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 interface ParallaxTextSectionProps {
   heading?: string;
@@ -8,12 +8,12 @@ interface ParallaxTextSectionProps {
   variant?: 'default' | 'dark' | 'purple' | 'bright-purple' | 'deep-purple' | 'gradient-purple';
 }
 
-export const ParallaxTextSection = ({
+export const ParallaxTextSection = memo(function ParallaxTextSection({
   heading,
   lines,
   alignment = 'center',
   variant = 'default',
-}: ParallaxTextSectionProps) => {
+}: ParallaxTextSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -81,4 +81,4 @@ export const ParallaxTextSection = ({
       </motion.div>
     </section>
   );
-};
+});

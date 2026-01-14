@@ -1,5 +1,5 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 interface FanStorySectionProps {
   images: { src: string; alt: string }[];
@@ -7,7 +7,7 @@ interface FanStorySectionProps {
   bottomText?: string;
 }
 
-export const FanStorySection = ({ images, topText, bottomText }: FanStorySectionProps) => {
+export const FanStorySection = memo(function FanStorySection({ images, topText, bottomText }: FanStorySectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -71,4 +71,4 @@ export const FanStorySection = ({ images, topText, bottomText }: FanStorySection
       )}
     </section>
   );
-};
+});

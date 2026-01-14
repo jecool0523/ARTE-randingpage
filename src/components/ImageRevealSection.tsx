@@ -1,5 +1,5 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 interface ImageRevealSectionProps {
   images: Array<{
@@ -10,10 +10,10 @@ interface ImageRevealSectionProps {
   layout?: 'grid' | 'stacked' | 'row';
 }
 
-export const ImageRevealSection = ({
+export const ImageRevealSection = memo(function ImageRevealSection({
   images,
   layout = 'row',
-}: ImageRevealSectionProps) => {
+}: ImageRevealSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -155,4 +155,4 @@ export const ImageRevealSection = ({
       </motion.div>
     </section>
   );
-};
+});

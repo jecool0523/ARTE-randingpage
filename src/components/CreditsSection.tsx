@@ -1,7 +1,7 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
-export const CreditsSection = () => {
+export const CreditsSection = memo(function CreditsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -94,4 +94,4 @@ export const CreditsSection = () => {
       </motion.div>
     </section>
   );
-};
+});

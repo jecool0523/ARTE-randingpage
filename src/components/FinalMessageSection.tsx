@@ -1,12 +1,12 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 interface FinalMessageSectionProps {
   backgroundImage?: string;
   lines: string[];
 }
 
-export const FinalMessageSection = ({ backgroundImage, lines }: FinalMessageSectionProps) => {
+export const FinalMessageSection = memo(function FinalMessageSection({ backgroundImage, lines }: FinalMessageSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -81,4 +81,4 @@ export const FinalMessageSection = ({ backgroundImage, lines }: FinalMessageSect
       </motion.div>
     </section>
   );
-};
+});

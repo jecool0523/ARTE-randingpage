@@ -1,12 +1,12 @@
+import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 interface ConcertGallerySectionProps {
   images: { src: string; alt: string }[];
   topText?: string[];
 }
 
-export const ConcertGallerySection = ({ images, topText }: ConcertGallerySectionProps) => {
+export const ConcertGallerySection = memo(function ConcertGallerySection({ images, topText }: ConcertGallerySectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -72,4 +72,4 @@ export const ConcertGallerySection = ({ images, topText }: ConcertGallerySection
       </div>
     </section>
   );
-};
+});
