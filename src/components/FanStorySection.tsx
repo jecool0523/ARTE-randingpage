@@ -21,12 +21,12 @@ export const FanStorySection = memo(function FanStorySection({ images, topText, 
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-24 md:py-32"
+      className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden px-4 py-12 md:min-h-screen md:py-24 lg:py-32"
       style={{ background: 'transparent' }}
     >
       {topText && (
         <motion.p
-          className="mb-12 max-w-2xl text-center font-body text-lg leading-relaxed text-foreground/90 md:mb-16 md:text-xl"
+          className="mb-8 max-w-2xl text-center font-body text-fluid-lg leading-relaxed text-foreground/90 md:mb-12 md:text-fluid-xl"
           style={{ opacity, y: y2 }}
         >
           {topText}
@@ -34,7 +34,7 @@ export const FanStorySection = memo(function FanStorySection({ images, topText, 
       )}
 
       <motion.div
-        className="grid w-full max-w-5xl grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
+        className="grid w-full max-w-5xl grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4 md:gap-4"
         style={{ y: y1 }}
       >
         {images.map((image, index) => (
@@ -53,17 +53,17 @@ export const FanStorySection = memo(function FanStorySection({ images, topText, 
             <img
               src={image.src}
               alt={image.alt}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           </motion.div>
         ))}
       </motion.div>
 
       {bottomText && (
         <motion.p
-          className="mt-12 max-w-2xl text-center font-body text-lg leading-relaxed text-foreground/90 md:mt-16 md:text-xl"
+          className="mt-8 max-w-2xl text-center font-body text-fluid-lg leading-relaxed text-foreground/90 md:mt-12 md:text-fluid-xl"
           style={{ opacity, y: y2 }}
         >
           {bottomText}

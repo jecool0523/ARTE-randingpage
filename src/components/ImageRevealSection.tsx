@@ -26,17 +26,17 @@ export const ImageRevealSection = memo(function ImageRevealSection({
     return (
       <section
         ref={containerRef}
-        className="relative flex min-h-screen items-center justify-center px-4 py-32"
+        className="relative flex min-h-[60vh] items-center justify-center px-4 py-12 md:min-h-screen md:py-32"
         style={{ background: 'transparent' }}
       >
         <motion.div
-          className="flex flex-wrap items-center justify-center gap-4 md:gap-8"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap md:gap-8"
           style={{ opacity: containerOpacity }}
         >
           {images.map((image, index) => (
             <motion.div
               key={index}
-              className="relative overflow-hidden rounded-lg"
+              className="group relative w-full overflow-hidden rounded-lg sm:w-auto"
               initial={{ opacity: 0, scale: 0.8, y: 60 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{
@@ -49,11 +49,13 @@ export const ImageRevealSection = memo(function ImageRevealSection({
               <img
                 src={image.src}
                 alt={image.alt}
-                className="h-48 w-auto object-cover md:h-64 lg:h-80"
+                className="h-40 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 sm:h-48 sm:w-auto md:h-64 lg:h-80"
                 loading="lazy"
               />
+              {/* Hover overlay */}
+              <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
               {image.title && (
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/80 to-transparent p-4">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/80 to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-4">
                   <p className="font-display text-sm text-foreground md:text-base">
                     {image.title}
                   </p>
@@ -70,17 +72,17 @@ export const ImageRevealSection = memo(function ImageRevealSection({
     return (
       <section
         ref={containerRef}
-        className="relative min-h-screen py-32"
+        className="relative min-h-[60vh] py-12 md:min-h-screen md:py-32"
         style={{ background: 'transparent' }}
       >
         <motion.div
-          className="flex flex-col items-center gap-16"
+          className="flex flex-col items-center gap-8 md:gap-16"
           style={{ opacity: containerOpacity }}
         >
           {images.map((image, index) => (
             <motion.div
               key={index}
-              className="relative w-full max-w-4xl overflow-hidden px-4"
+              className="group relative w-full max-w-4xl overflow-hidden px-4"
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -92,12 +94,14 @@ export const ImageRevealSection = memo(function ImageRevealSection({
               <img
                 src={image.src}
                 alt={image.alt}
-                className="h-auto w-full rounded-lg object-cover"
+                className="h-auto w-full rounded-lg object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
               />
+              {/* Hover overlay */}
+              <div className="pointer-events-none absolute inset-0 rounded-lg bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
               {image.title && (
                 <motion.p
-                  className="mt-4 text-center font-body text-sm text-muted-foreground"
+                  className="mt-3 text-center font-body text-fluid-sm text-muted-foreground md:mt-4"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -117,17 +121,17 @@ export const ImageRevealSection = memo(function ImageRevealSection({
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen px-4 py-32"
+      className="relative min-h-[60vh] px-4 py-12 md:min-h-screen md:py-32"
       style={{ background: 'transparent' }}
     >
       <motion.div
-        className="mx-auto grid max-w-6xl grid-cols-2 gap-4 md:grid-cols-3 lg:gap-8"
+        className="mx-auto grid max-w-6xl grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:gap-6"
         style={{ opacity: containerOpacity }}
       >
         {images.map((image, index) => (
           <motion.div
             key={index}
-            className="relative aspect-square overflow-hidden rounded-lg"
+            className="group relative aspect-square overflow-hidden rounded-lg"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{
@@ -140,11 +144,13 @@ export const ImageRevealSection = memo(function ImageRevealSection({
             <img
               src={image.src}
               alt={image.alt}
-              className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
+              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               loading="lazy"
             />
+            {/* Hover overlay */}
+            <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
             {image.title && (
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-4">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-4">
                 <p className="font-body text-xs text-foreground md:text-sm">
                   {image.title}
                 </p>

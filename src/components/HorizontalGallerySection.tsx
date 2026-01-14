@@ -37,9 +37,9 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
   });
 
   // Mobile: smaller images, desktop: larger
-  const imageWidth = isMobile ? 280 : 450;
-  const imageHeight = isMobile ? '35vh' : '50vh';
-  const gap = isMobile ? 16 : 32;
+  const imageWidth = isMobile ? 260 : 450;
+  const imageHeight = isMobile ? '30vh' : '50vh';
+  const gap = isMobile ? 12 : 32;
   
   const totalWidth = images.length * imageWidth + (images.length - 1) * gap;
   const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
@@ -47,7 +47,7 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
   const translateX = useTransform(
     scrollYProgress,
     [0, 1],
-    [isMobile ? '5vw' : '10vw', `-${totalWidth - windowWidth + (isMobile ? 100 : 200)}px`]
+    [isMobile ? '3vw' : '10vw', `-${totalWidth - windowWidth + (isMobile ? 60 : 200)}px`]
   );
 
   const textOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
@@ -56,7 +56,7 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
     <section
       ref={containerRef}
       className="relative"
-      style={{ height: isMobile ? '300vh' : height, background: 'transparent' }}
+      style={{ height: isMobile ? '250vh' : height, background: 'transparent' }}
     >
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
         {/* Gallery */}
@@ -67,7 +67,7 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
           {images.map((image, index) => (
             <motion.div
               key={index}
-              className="gallery-image-wrapper flex-shrink-0 overflow-hidden rounded-lg bg-black"
+              className="gallery-image-wrapper group flex-shrink-0 overflow-hidden rounded-lg bg-black"
               style={{
                 width: image.ratio ? `calc(${imageHeight} * ${image.ratio})` : `${imageWidth}px`,
                 height: imageHeight,
@@ -81,6 +81,8 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
                 media={image}
                 className="h-full w-full"
                 loading="lazy"
+                showHoverEffect={true}
+                showOverlay={true}
               />
             </motion.div>
           ))}
@@ -89,21 +91,21 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
         {/* Text overlay */}
         {(description || title) && (
           <motion.div
-            className="absolute bottom-8 left-0 right-0 px-4 text-center md:bottom-16 md:px-8"
+            className="absolute bottom-6 left-0 right-0 px-4 text-center md:bottom-16 md:px-8"
             style={{ opacity: textOpacity }}
           >
             {description && (
-              <p className="mx-auto max-w-xl font-body text-sm leading-relaxed text-text-body md:max-w-2xl md:text-base lg:text-lg">
+              <p className="mx-auto max-w-xl font-body text-fluid-sm leading-relaxed text-text-body md:max-w-2xl md:text-fluid-base">
                 {description}
               </p>
             )}
             {linkText && (
-              <button className="mt-3 font-body text-xs text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground md:mt-4 md:text-sm">
+              <button className="mt-2 font-body text-fluid-xs text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground md:mt-4">
                 {linkText}
               </button>
             )}
             {title && (
-              <p className="mt-3 font-display text-sm italic text-primary md:mt-4 md:text-lg lg:text-xl">
+              <p className="mt-2 font-display text-fluid-sm italic text-primary md:mt-4 md:text-fluid-lg">
                 {title}
               </p>
             )}

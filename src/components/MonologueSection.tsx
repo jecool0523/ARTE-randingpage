@@ -24,13 +24,13 @@ export const MonologueSection = memo(function MonologueSection({ lines, classNam
   };
 
   const textColorClass = variant === 'purple' || variant === 'bright-purple' 
-    ? 'text-white' 
+    ? 'text-white text-shadow' 
     : 'text-text-body';
 
   return (
     <section
       ref={ref}
-      className={`relative flex min-h-[80vh] flex-col items-center justify-center px-4 py-16 md:min-h-screen md:py-32 ${variantStyles[variant]} ${className}`}
+      className={`relative flex min-h-[60vh] flex-col items-center justify-center px-4 py-12 md:min-h-[80vh] md:py-24 lg:min-h-screen lg:py-32 ${variantStyles[variant]} ${className}`}
     >
       {/* Subtle background glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsla(var(--primary)/0.03)_0%,transparent_70%)]" />
@@ -82,16 +82,16 @@ const MonologueLine = ({ line, scrollProgress, start, end, textColorClass = 'tex
     [start, start + 0.08, end - 0.08, end],
     [0.98, 1, 1, 0.98]
   );
-  // Subtle blur effect
+  // Blur effect
   const filter = useTransform(
     scrollProgress,
     [start, start + 0.08, end - 0.08, end],
-    ['blur(2px)', 'blur(0px)', 'blur(0px)', 'blur(2px)']
+    ['blur(4px)', 'blur(0px)', 'blur(0px)', 'blur(4px)']
   );
 
   return (
     <motion.p
-      className={`text-base font-light leading-relaxed md:text-lg lg:text-2xl ${textColorClass}`}
+      className={`text-fluid-base font-light leading-relaxed md:text-fluid-lg lg:text-fluid-xl ${textColorClass}`}
       style={{ opacity, y, scale, filter }}
     >
       {line}
