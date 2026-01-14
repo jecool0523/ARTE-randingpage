@@ -34,14 +34,14 @@ export interface MediaItemData {
 // ============================
 // ============================
 export const siteMetadata = {
-  title: 'ARTE | 아르떼 연극/뮤지컬 동아리',
-  description: '아르떼의 이야기를 몰입형 전시와 함께 감상해보세요. An immersive storytelling experience.',
+  title: 'ARTE | 아르떼 디미고 연극/뮤지컬 동아리',
+  description: '아르떼의 이야기를 몰입형 전시와 함께 감상해보세요.',
   author: 'ARTE',
   themeColor: '#0a0a0a',
-  url: 'https://arte-theater.kr',
+  url: 'https://arte-randingpage.vercel.app',
   ogImage: arteStage01,
   twitterCard: 'summary_large_image' as const,
-  keywords: ['아르떼', 'ARTE', '연극', '뮤지컬', '동아리', '공연'],
+  keywords: ['아르떼', 'ARTE', '디미고', 'dimigo','dimi' '연극', '뮤지컬', '동아리', '공연'],
   locale: 'ko_KR',
 };
 
@@ -57,10 +57,10 @@ export interface NavigationChapter {
 export const navigationChapters: NavigationChapter[] = [
   { id: 'landing', title: '시작', offset: 0 },
   { id: 'story', title: '이야기', offset: 0.1 },
-  { id: 'gallery', title: '갤러리', offset: 0.25 },
+  { id: 'gallery', title: '노래', offset: 0.25 },
   { id: 'journey', title: '여정', offset: 0.5 },
   { id: 'festival', title: '무대', offset: 0.75 },
-  { id: 'credits', title: '마무리', offset: 0.95 },
+  { id: 'credits', title: '경험', offset: 0.95 },
 ];
 
 export const navigationLabels = {
@@ -342,6 +342,6 @@ export const finalMessageData = {
     '여러분에게 아르떼의 이야기를 전하는 무대에서',
     '지금까지 쌓아온 추억부터 앞으로 여러분과 함께 만들어 갈 이야기까지',
     '찾아오는 관객들에게 감동과 여운을 주고픈 마음을 담아 공연을 준비했습니다.',
-    '아르떼의 무대, 많은 기대와 사랑 부탁드립니다.',
+    '2026 아르떼의 무대, 많은 기대와 사랑 부탁드립니다.',
   ],
 };
