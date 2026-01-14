@@ -32,10 +32,10 @@ export const ParallaxTextSection = memo(function ParallaxTextSection({
   const variantStyles: Record<string, { bg: string; text: string }> = {
     'default': { bg: 'bg-background', text: 'text-text-body' },
     'dark': { bg: 'bg-[hsl(270,20%,8%)]', text: 'text-text-body' },
-    'purple': { bg: 'bg-[hsl(270,60%,55%)]', text: 'text-white' },
-    'bright-purple': { bg: 'bg-[hsl(275,70%,60%)]', text: 'text-white' },
+    'purple': { bg: 'bg-[hsl(270,60%,55%)]', text: 'text-white text-shadow' },
+    'bright-purple': { bg: 'bg-[hsl(275,70%,60%)]', text: 'text-white text-shadow' },
     'deep-purple': { bg: 'bg-[hsl(265,40%,12%)]', text: 'text-text-body' },
-    'gradient-purple': { bg: '', text: 'text-white' },
+    'gradient-purple': { bg: '', text: 'text-white text-shadow-lg' },
   };
 
   const { text: textClass } = variantStyles[variant];
@@ -47,18 +47,18 @@ export const ParallaxTextSection = memo(function ParallaxTextSection({
   return (
     <section
       ref={containerRef}
-      className={`relative flex min-h-screen flex-col items-center justify-center px-4 py-32 ${variantStyles[variant].bg}`}
+      className={`relative flex min-h-[80vh] flex-col items-center justify-center px-4 py-12 md:min-h-screen md:py-32 ${variantStyles[variant].bg}`}
       style={bgStyle}
     >
       <motion.div
-        className={`flex max-w-4xl flex-col gap-6 ${alignmentClasses[alignment]}`}
+        className={`flex max-w-4xl flex-col gap-4 md:gap-6 ${alignmentClasses[alignment]}`}
         style={{ opacity: containerOpacity }}
       >
         {heading && (
           <motion.h3
-            className="font-body text-sm font-medium uppercase tracking-widest text-primary"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="font-body text-fluid-xs font-medium uppercase tracking-widest text-primary md:text-fluid-sm"
+            initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
@@ -69,10 +69,14 @@ export const ParallaxTextSection = memo(function ParallaxTextSection({
         {lines.map((line, index) => (
           <motion.p
             key={index}
-            className={`font-body text-lg font-light leading-relaxed md:text-xl lg:text-2xl ${textClass}`}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.15 }}
+            className={`font-body text-fluid-lg font-light leading-relaxed md:text-fluid-xl lg:text-fluid-2xl ${textClass}`}
+            initial={{ opacity: 0, y: 40, filter: 'blur(4px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.15,
+              ease: [0.22, 1, 0.36, 1]
+            }}
             viewport={{ once: true, margin: '-10%' }}
           >
             {line}

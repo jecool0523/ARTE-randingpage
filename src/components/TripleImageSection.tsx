@@ -37,12 +37,12 @@ export const TripleImageSection = memo(function TripleImageSection({
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen flex-col items-center justify-center px-4 py-32"
+      className="relative flex min-h-screen flex-col items-center justify-center px-4 py-12 md:py-32"
       style={{ background: 'transparent' }}
     >
       {topText && (
         <motion.p
-          className="mb-8 max-w-2xl text-center font-body text-base text-text-body md:text-lg"
+          className="mb-6 max-w-2xl text-center font-body text-fluid-base text-text-body md:mb-8 md:text-fluid-lg"
           style={{ opacity }}
           initial={{ y: 20 }}
           whileInView={{ y: 0 }}
@@ -53,7 +53,7 @@ export const TripleImageSection = memo(function TripleImageSection({
       )}
 
       <motion.div
-        className="flex flex-col items-center gap-4 md:flex-row md:gap-6"
+        className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 md:flex md:flex-row md:items-center md:justify-center md:gap-6"
         style={{ opacity }}
       >
         {images.slice(0, 3).map((image, index) => {
@@ -63,7 +63,12 @@ export const TripleImageSection = memo(function TripleImageSection({
           return (
             <motion.div
               key={index}
-              className="relative h-48 w-64 overflow-hidden rounded-lg md:h-64 md:w-80 lg:h-80 lg:w-96"
+              className={cn(
+                "group relative overflow-hidden rounded-lg",
+                // First item full width on mobile, others side by side
+                index === 0 ? "col-span-1 sm:col-span-2 md:col-span-1" : "",
+                "h-48 w-full sm:h-56 md:h-64 md:w-80 lg:h-80 lg:w-96"
+              )}
               style={{
                 y: yTransforms[index],
                 scale: scaleTransforms[index],
@@ -72,9 +77,11 @@ export const TripleImageSection = memo(function TripleImageSection({
               <img
                 src={image.src}
                 alt={image.alt}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 loading="lazy"
               />
+              {/* Hover overlay */}
+              <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
             </motion.div>
           );
         })}
@@ -82,7 +89,7 @@ export const TripleImageSection = memo(function TripleImageSection({
 
       {bottomText && (
         <motion.p
-          className="mt-8 max-w-2xl text-center font-body text-base text-text-body md:text-lg"
+          className="mt-6 max-w-2xl text-center font-body text-fluid-base text-text-body md:mt-8 md:text-fluid-lg"
           style={{ opacity }}
           initial={{ y: -20 }}
           whileInView={{ y: 0 }}
@@ -94,7 +101,7 @@ export const TripleImageSection = memo(function TripleImageSection({
 
       {title && (
         <motion.h3
-          className="mt-4 font-display text-xl italic text-primary md:text-2xl"
+          className="mt-4 font-display text-fluid-xl italic text-primary md:text-fluid-2xl"
           style={{ opacity }}
         >
           {title}
@@ -103,3 +110,8 @@ export const TripleImageSection = memo(function TripleImageSection({
     </section>
   );
 });
+
+// Helper function
+function cn(...classes: (string | boolean | undefined)[]) {
+  return classes.filter(Boolean).join(' ');
+}
