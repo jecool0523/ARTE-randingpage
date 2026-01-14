@@ -35,7 +35,7 @@ export const DisclaimerSection = () => {
         style={{ opacity }}
       >
         <p className="font-body text-sm">
-          아래로 스크롤하여, 아이네의 여정에 함께해주세요.
+          아래로 스크롤하여, 아르떼의 여정에 함께해주세요.
         </p>
         <ChevronRight className="h-4 w-4 scroll-indicator" />
       </motion.div>
