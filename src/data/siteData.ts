@@ -193,6 +193,26 @@ export const mashupImages = [
 ];
 
 // ============================
+// Landing Section Data (메인 화면)
+// ============================
+export const landingData = {
+  // 배경 이미지 (URL 또는 import한 로컬 이미지 변수 사용)
+  backgroundImage: 'https://static-assets.everpurple.kr/history/ine_history_landing_background.png?1',
+  
+  // 타이틀 이미지 (INE History 로고)
+  titleImage: 'https://static-assets.everpurple.kr/history/ine_history_title_c.png',
+  
+  // 환영 문구
+  welcomeText: '히스토리 페이지에 오신 것을 환영합니다.',
+  
+  // 버튼 텍스트
+  buttonText: '관람 시작하기',
+  
+  // 하단 설명 문구
+  subText: '아이네에 대한 이야기를 몰입형 전시와 함께 감상해보세요.'
+};
+
+// ============================
 // Text Content
 // ============================
 
