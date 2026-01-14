@@ -41,7 +41,7 @@ export const siteMetadata = {
   url: 'https://arte-randingpage.vercel.app',
   ogImage: arteStage01,
   twitterCard: 'summary_large_image' as const,
-  keywords: ['아르떼', 'ARTE', '디미고', 'dimigo','dimi' '연극', '뮤지컬', '동아리', '공연'],
+  keywords: ['아르떼', 'ARTE', '디미고', 'dimigo','dimi', '연극', '뮤지컬', '동아리', '공연'],
   locale: 'ko_KR',
 };
 
