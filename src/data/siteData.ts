@@ -17,6 +17,9 @@ import arteSceneHanbok from '@/assets/arte_scene_hanbok.jpg';
 import arteSoloReading from '@/assets/arte_solo_reading.jpg';
 import arteGroupScene from '@/assets/arte_group_scene.jpg';
 import arteClassroom from '@/assets/arte_classroom.jpg';
+import Background from '@/assets/rent/CurtainCall.jpg';
+import titletxt from '@/assets/main_txt.png';
+
 
 // ============================
 // Type Definitions (Media supports both image and video)
@@ -197,11 +200,11 @@ export const mashupImages = [
 // ============================
 export const landingData = {
   // 배경 이미지 (URL 또는 import한 로컬 이미지 변수 사용)
-  backgroundImage: 'https://static-assets.everpurple.kr/history/ine_history_landing_background.png?1',
+  backgroundImage: Background,
   
-  // 타이틀 이미지 (INE History 로고)
-  titleImage: 'https://static-assets.everpurple.kr/history/ine_history_title_c.png',
-  
+  // 타이틀 이미지 (=ARTE Story 로고)
+  titleImage: titletxt,
+
   // 환영 문구
   welcomeText: '히스토리 페이지에 오신 것을 환영합니다.',
   
@@ -209,7 +212,7 @@ export const landingData = {
   buttonText: '관람 시작하기',
   
   // 하단 설명 문구
-  subText: '아르떼의 이야기를 몰입형 전시와 함께 감상해보세요.'
+  subText: '아르떼의 여정을 같이 체험해보세요'
 };
 
 // ============================
