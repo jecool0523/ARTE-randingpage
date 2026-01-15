@@ -1,110 +1,290 @@
-import { memo, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { memo, useRef, useMemo } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import type { FinalMessageSlide } from '@/data/siteData';
 
 interface FinalMessageSectionProps {
-  backgroundImage?: string;
-  lines: string[];
+  slides: FinalMessageSlide[];
 }
 
-export const FinalMessageSection = memo(function FinalMessageSection({ backgroundImage, lines }: FinalMessageSectionProps) {
+export const FinalMessageSection = memo(function FinalMessageSection({ slides }: FinalMessageSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const totalSlides = slides.length;
   
-  // 섹션 전체의 스크롤 진행률 추적
+  // 전체 섹션 스크롤 진행률 추적
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'end end'], // 섹션 시작부터 끝까지
+    offset: ['start start', 'end end'],
   });
 
-  // 배경 효과: 스크롤에 따라 약간 확대되거나 투명도 조절
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.1, 1]);
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0.8]);
+  // 현재 활성화된 슬라이드 인덱스를 스크롤 진행률에 따라 계산
+  const activeSlideIndex = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, totalSlides - 0.01]
+  );
 
   return (
     <section
       ref={sectionRef}
-      // 텍스트가 순차적으로 나올 수 있도록 섹션 높이를 충분히 확보 (최소 200vh)
-      className="relative flex min-h-[200vh] flex-col items-center justify-start overflow-hidden"
+      className="relative"
+      style={{ height: `${totalSlides * 100}vh` }}
     >
-      {/* Dynamic purple gradient background */}
-      <motion.div
-        className="sticky top-0 h-screen w-full overflow-hidden"
-        style={{ scale: bgScale, opacity: bgOpacity }}
-      >
-        {/* Base purple gradient */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(180deg, hsl(265 50% 8%) 0%, hsl(275 60% 15%) 20%, hsl(280 70% 45%) 50%, hsl(285 65% 55%) 70%, hsl(275 55% 40%) 100%)',
-          }}
+      {/* Sticky container for the viewport */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {/* Background images with crossfade */}
+        <BackgroundLayers 
+          slides={slides} 
+          scrollYProgress={scrollYProgress}
+          totalSlides={totalSlides}
         />
         
-        {/* Purple glow effects */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[120vw] h-[80vh] bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.4),transparent_60%)]" />
-          <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[100vw] h-[60vh] bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.3),transparent_50%)]" />
+        {/* Purple gradient overlay for mood */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div 
+            className="absolute inset-0 opacity-60"
+            style={{
+              background: 'radial-gradient(ellipse at center, transparent 0%, hsl(270 40% 8% / 0.7) 100%)',
+            }}
+          />
         </div>
 
-        {/* Silhouette overlay */}
-        {backgroundImage && (
-          <img
-            src={backgroundImage}
-            alt="Background"
-            className="absolute inset-0 h-full w-full object-cover mix-blend-overlay opacity-30"
-            loading="lazy"
-          />
-        )}
+        {/* Text content layers */}
+        <TextLayers 
+          slides={slides}
+          scrollYProgress={scrollYProgress}
+          totalSlides={totalSlides}
+        />
 
-        {/* Top and bottom fade */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(270,40%,8%)]/80 via-transparent to-[hsl(270,40%,8%)]/60" />
-      </motion.div>
-
-      {/* Text content container */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        <div className="flex flex-col items-center px-4 text-center pb-[20vh]">
-          {lines.map((line, index) => (
-            <MessageLine
-              key={index}
-              line={line}
-              index={index}
-              totalLines={lines.length}
-              scrollYProgress={scrollYProgress}
+        {/* Scroll progress indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          {slides.map((_, index) => (
+            <SlideIndicator 
+              key={index} 
+              index={index} 
+              activeIndex={activeSlideIndex}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 });
 
-// 개별 텍스트 라인 컴포넌트
-interface MessageLineProps {
-  line: string;
-  index: number;
-  totalLines: number;
+// Background layers with crossfade effect
+interface BackgroundLayersProps {
+  slides: FinalMessageSlide[];
   scrollYProgress: any;
+  totalSlides: number;
 }
 
-const MessageLine = ({ line, index, totalLines, scrollYProgress }: MessageLineProps) => {
-  // 스크롤 진행률에 따라 각 줄이 등장할 타이밍 계산
-  // 0.2(20%) 지점부터 시작해서 0.8(80%) 지점까지 순차적으로 등장
-  const step = 0.6 / totalLines;
-  const start = 0.2 + (index * step);
-  const end = start + 0.15; // 각 줄이 완전히 나타나는 데 걸리는 스크롤 구간
+const BackgroundLayers = memo(function BackgroundLayers({ 
+  slides, 
+  scrollYProgress, 
+  totalSlides 
+}: BackgroundLayersProps) {
+  return (
+    <>
+      {slides.map((slide, index) => (
+        <BackgroundSlide
+          key={index}
+          slide={slide}
+          index={index}
+          scrollYProgress={scrollYProgress}
+          totalSlides={totalSlides}
+        />
+      ))}
+    </>
+  );
+});
 
-  const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
-  const y = useTransform(scrollYProgress, [start, end], [40, 0]);
-  const filter = useTransform(scrollYProgress, [start, end], ['blur(10px)', 'blur(0px)']);
+interface BackgroundSlideProps {
+  slide: FinalMessageSlide;
+  index: number;
+  scrollYProgress: any;
+  totalSlides: number;
+}
+
+const BackgroundSlide = memo(function BackgroundSlide({ 
+  slide, 
+  index, 
+  scrollYProgress, 
+  totalSlides 
+}: BackgroundSlideProps) {
+  // 각 슬라이드의 시작점과 끝점 계산
+  const slideStart = index / totalSlides;
+  const slideEnd = (index + 1) / totalSlides;
+  const transitionDuration = 0.15 / totalSlides; // 부드러운 전환을 위한 구간
+  
+  // 슬라이드 opacity: 해당 구간에서만 보이도록
+  const opacity = useTransform(
+    scrollYProgress,
+    [
+      Math.max(0, slideStart - transitionDuration),
+      slideStart,
+      slideEnd - transitionDuration,
+      slideEnd,
+    ],
+    [0, 1, 1, 0]
+  );
+
+  // 배경 이미지 scale 효과 (Ken Burns)
+  const scale = useTransform(
+    scrollYProgress,
+    [slideStart, slideEnd],
+    [1.05, 1.15]
+  );
 
   return (
-    <motion.h3
-      className="mb-6 font-display text-xl leading-relaxed text-white md:mb-8 md:text-2xl lg:text-3xl text-shadow-lg"
-      style={{ 
-        opacity, 
-        y, 
-        filter 
-      }}
+    <motion.div
+      className="absolute inset-0"
+      style={{ opacity }}
     >
-      {line}
-    </motion.h3>
+      {/* Gradient background */}
+      <div 
+        className="absolute inset-0"
+        style={{ background: slide.backgroundColor }}
+      />
+      
+      {/* Image with Ken Burns effect */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ scale }}
+      >
+        <img
+          src={slide.image}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover mix-blend-overlay opacity-40"
+          loading={index < 2 ? 'eager' : 'lazy'}
+        />
+      </motion.div>
+
+      {/* Purple glow effect */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.2),transparent_70%)]" />
+      
+      {/* Top and bottom vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/50" />
+    </motion.div>
   );
-};
+});
+
+// Text layers with fade transitions
+interface TextLayersProps {
+  slides: FinalMessageSlide[];
+  scrollYProgress: any;
+  totalSlides: number;
+}
+
+const TextLayers = memo(function TextLayers({ 
+  slides, 
+  scrollYProgress, 
+  totalSlides 
+}: TextLayersProps) {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      {slides.map((slide, index) => (
+        <TextSlide
+          key={index}
+          text={slide.text}
+          index={index}
+          scrollYProgress={scrollYProgress}
+          totalSlides={totalSlides}
+        />
+      ))}
+    </div>
+  );
+});
+
+interface TextSlideProps {
+  text: string;
+  index: number;
+  scrollYProgress: any;
+  totalSlides: number;
+}
+
+const TextSlide = memo(function TextSlide({ 
+  text, 
+  index, 
+  scrollYProgress, 
+  totalSlides 
+}: TextSlideProps) {
+  const slideStart = index / totalSlides;
+  const slideEnd = (index + 1) / totalSlides;
+  const midPoint = (slideStart + slideEnd) / 2;
+  const fadeInEnd = slideStart + (slideEnd - slideStart) * 0.25;
+  const fadeOutStart = slideEnd - (slideEnd - slideStart) * 0.25;
+
+  // 텍스트 애니메이션: 등장 → 유지 → 퇴장
+  const opacity = useTransform(
+    scrollYProgress,
+    [slideStart, fadeInEnd, fadeOutStart, slideEnd],
+    [0, 1, 1, 0]
+  );
+
+  const y = useTransform(
+    scrollYProgress,
+    [slideStart, fadeInEnd, fadeOutStart, slideEnd],
+    [60, 0, 0, -40]
+  );
+
+  const blur = useTransform(
+    scrollYProgress,
+    [slideStart, fadeInEnd, fadeOutStart, slideEnd],
+    ['blur(12px)', 'blur(0px)', 'blur(0px)', 'blur(8px)']
+  );
+
+  // 텍스트에 줄바꿈이 있으면 분리해서 렌더링
+  const lines = text.split('\n');
+
+  return (
+    <motion.div
+      className="absolute inset-0 flex items-center justify-center px-6 md:px-12"
+      style={{ opacity, y, filter: blur }}
+    >
+      <div className="max-w-4xl text-center">
+        {lines.map((line, lineIndex) => (
+          <h3
+            key={lineIndex}
+            className="font-display text-xl leading-relaxed text-white md:text-2xl lg:text-3xl xl:text-4xl text-shadow-lg"
+            style={{
+              textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 4px 40px rgba(168,85,247,0.3)',
+            }}
+          >
+            {line}
+          </h3>
+        ))}
+      </div>
+    </motion.div>
+  );
+});
+
+// Slide indicator dot
+interface SlideIndicatorProps {
+  index: number;
+  activeIndex: any;
+}
+
+const SlideIndicator = memo(function SlideIndicator({ index, activeIndex }: SlideIndicatorProps) {
+  const isActive = useTransform(
+    activeIndex,
+    (value: number) => Math.floor(value) === index
+  );
+
+  const scale = useTransform(isActive, (active) => active ? 1.5 : 1);
+  const opacity = useTransform(isActive, (active) => active ? 1 : 0.4);
+  const backgroundColor = useTransform(
+    isActive, 
+    (active) => active ? 'rgb(168, 85, 247)' : 'rgba(255, 255, 255, 0.5)'
+  );
+
+  return (
+    <motion.div
+      className="h-2 w-2 rounded-full transition-colors duration-300"
+      style={{ scale, opacity, backgroundColor }}
+    />
+  );
+});
