@@ -10,6 +10,7 @@ import { BackgroundMusic } from '@/components/BackgroundMusic';
 import { Navigation } from '@/components/Navigation';
 import { SectionWrapper, DIVIDERS } from '@/components/SectionWrapper';
 import { SectionDivider } from '@/components/SectionDivider';
+import { MasonryGallerySection } from '@/components/MasonryGallerySection';
 
 // Lazy-loaded components (below-the-fold)
 const MonologueSection = lazy(() => import('@/components/MonologueSection').then(m => ({ default: m.MonologueSection })));
@@ -53,6 +54,7 @@ import {
   concertGallerySectionData,
   photoGallerySectionData,
   finalMessageData,
+  masonryGalleryData,
 } from '@/data/siteData';
 
 // Loading fallback for lazy components
@@ -279,6 +281,18 @@ const Index = () => {
           <PhotoGallerySection
             images={photoGalleryImages}
             topText={photoGallerySectionData.topText}
+          />
+        </SectionWrapper>
+        
+        {/* Masonry Gallery */}
+        <SectionWrapper 
+          dividerBefore={DIVIDERS.gradientToDark('hsl(270, 25%, 4%)')}
+          dividerAfter={DIVIDERS.line}
+        >
+          <MasonryGallerySection
+            images={masonryGalleryData.images}
+            title={masonryGalleryData.title}
+            subtitle={masonryGalleryData.subtitle}
           />
         </SectionWrapper>
 
