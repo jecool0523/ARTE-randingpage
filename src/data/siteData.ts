@@ -216,6 +216,71 @@ export const landingData = {
 };
 
 // ============================
+// Masonry Gallery Section Data
+// ============================
+export const masonryGalleryData = {
+  title: "Captured Moments",
+  subtitle: "무대 뒤편의 땀방울부터 화려한 조명 아래의 환희까지, 아르떼가 걸어온 빛나는 여정의 기록들입니다.",
+  // Masonry 레이아웃을 위해 이미지를 충분히 배치합니다 (3열 그리드 권장)
+  images: [
+    { 
+      src: arteStage01, 
+      alt: "Opening Scene", 
+      title: "설렘의 시작", 
+      ratio: 1.5 
+    },
+    { 
+      src: arteSoloReading, 
+      alt: "Solo Performance", 
+      title: "독백의 순간", 
+      ratio: 0.8 
+    },
+    { 
+      src: arteAudience, 
+      alt: "Audience View", 
+      title: "꽉 찬 객석", 
+      ratio: 1.2 
+    },
+    { 
+      src: arteCurtainCall, 
+      alt: "Curtain Call", 
+      title: "커튼콜의 환호", 
+      ratio: 1.0 
+    },
+    { 
+      src: arteScript, 
+      alt: "Script Reading", 
+      title: "치열했던 연습", 
+      ratio: 0.7 
+    },
+    { 
+      src: arteGroupScene, 
+      alt: "Group Acting", 
+      title: "함께 만드는 호흡", 
+      ratio: 1.4 
+    },
+    { 
+      src: arteSceneHanbok, 
+      alt: "Traditional Play", 
+      title: "전통의 울림", 
+      ratio: 0.9 
+    },
+    { 
+      src: arteTheaterSeats, 
+      alt: "Empty Theater", 
+      title: "무대의 정적", 
+      ratio: 1.1 
+    },
+    { 
+      src: arteFinalBow, 
+      alt: "Final Bow", 
+      title: "마지막 인사", 
+      ratio: 1.3 
+    },
+  ]
+};
+
+// ============================
 // Text Content
 // ============================
 
@@ -317,16 +382,16 @@ export const horizontalGalleryData = {
 
 export const tripleImageData = {
   anotherWorld: {
-    topText: '저희와 부원들의 연기뿐만 아니라 무대와 조화를 이루는 연출,',
-    title: '앙상블',
+    topText: '비록 공연은 못했지만 한글자씩 대본을 써내려가던 그 행복,',
+    title: '오늘 밤, 거짓말의 세계에서 잊을 수 없는 사랑을',
   },
   showdown: {
-    topText: '여러 스태프분들의 노력까지...',
-    title: '정기공연',
+    topText: '새로운 부원들과 하는 첫 번째 공연...',
+    title: '죽은 시인의 사회',
   },
   lockdown: {
-    topText: '아르떼와 함께 쌓아간 무대에는, 혼자서는 상상조차 못했던 많은 것들이 담겨 있었어요.',
-    title: '전통극',
+    topText: '도전적 뮤지컬까지 모두 쌓아간 무대에는, 혼자서는 상상조차 못했던 많은 것들이 담겨 있었어요.',
+    title: '렌트 : RENT',
   },
 };
 
@@ -335,7 +400,7 @@ export const fanStorySectionData = {
 };
 
 export const streamingSectionData = {
-  text: "시작은 '연기하는 동아리'였지만 관객들과 소통하는 배우로서의 모습 역시 저희의 정체성이자 또 다른 즐거움이 되었습니다.",
+  text: "시작은 '연극을 좋아하는 사람들의 모임'이었지만, 공연을 보여드리는 것이 저희의 정체성이자 또 다른 즐거움이 되었습니다.",
 };
 
 export const concertGallerySectionData = {

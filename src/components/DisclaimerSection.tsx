@@ -18,7 +18,7 @@ export const DisclaimerSection = () => {
       className="relative flex min-h-screen flex-col items-center justify-center px-4 py-32"
       style={{ background: 'transparent' }}
     >
-      <motion.div
+      <motion.div 
         className="text-center"
         style={{ opacity, y }}
       >

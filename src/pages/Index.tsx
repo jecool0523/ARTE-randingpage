@@ -10,7 +10,6 @@ import { BackgroundMusic } from '@/components/BackgroundMusic';
 import { Navigation } from '@/components/Navigation';
 import { SectionWrapper, DIVIDERS } from '@/components/SectionWrapper';
 import { SectionDivider } from '@/components/SectionDivider';
-import { MasonryGallerySection } from '@/components/MasonryGallerySection';
 
 // Lazy-loaded components (below-the-fold)
 const MonologueSection = lazy(() => import('@/components/MonologueSection').then(m => ({ default: m.MonologueSection })));
@@ -23,6 +22,7 @@ const FanStorySection = lazy(() => import('@/components/FanStorySection').then(m
 const StreamingSection = lazy(() => import('@/components/StreamingSection').then(m => ({ default: m.StreamingSection })));
 const ConcertGallerySection = lazy(() => import('@/components/ConcertGallerySection').then(m => ({ default: m.ConcertGallerySection })));
 const PhotoGallerySection = lazy(() => import('@/components/PhotoGallerySection').then(m => ({ default: m.PhotoGallerySection })));
+const MasonryGallerySection = lazy(() => import('@/components/MasonryGallerySection').then(m => ({ default: m.MasonryGallerySection })));
 const FinalMessageSection = lazy(() => import('@/components/FinalMessageSection').then(m => ({ default: m.FinalMessageSection })));
 const CreditsSection = lazy(() => import('@/components/CreditsSection').then(m => ({ default: m.CreditsSection })));
 
