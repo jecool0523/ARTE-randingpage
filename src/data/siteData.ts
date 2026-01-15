@@ -32,6 +32,13 @@ export interface MediaItemData {
   title?: string;
 }
 
+// Final Message Slide Type
+export interface FinalMessageSlide {
+  text: string;
+  image: string;
+  backgroundColor?: string;
+}
+
 // ============================
 // Site Metadata
 // ============================
@@ -422,14 +429,40 @@ export const photoGallerySectionData = {
   ],
 };
 
+// ============================
+// Final Message Section - Scrollytelling Slides
+// ============================
 export const finalMessageData = {
-  backgroundImage: arteAudience,
-  lines: [
-    '그래서 저희는 무대에 오르려 합니다.',
-    '변하지 않는 열정과 진심으로,',
-    '여러분에게 아르떼의 이야기를 전하는 무대에서',
-    '지금까지 쌓아온 추억부터 앞으로 여러분과 함께 만들어 갈 이야기까지',
-    '찾아오는 관객들에게 감동과 여운을 주고픈 마음을 담아 공연을 준비했습니다.',
-    '2026 아르떼의 무대, 많은 기대와 사랑 부탁드립니다.',
-  ],
+  slides: [
+    { 
+      text: '그래서 저희는 무대에 오르려 합니다.',
+      image: arteAudience,
+      backgroundColor: 'linear-gradient(180deg, hsl(270 35% 12%) 0%, hsl(270 40% 20%) 100%)',
+    },
+    { 
+      text: '변하지 않는 열정과 진심으로,',
+      image: arteStage01,
+      backgroundColor: 'linear-gradient(180deg, hsl(280 70% 50%) 0%, hsl(280 60% 45%) 100%)',
+    },
+    { 
+      text: '여러분에게 아르떼의 이야기를 전하는 무대에서',
+      image: arteCurtainCall,
+      backgroundColor: 'linear-gradient(180deg, hsl(275 65% 55%) 0%, hsl(280 70% 45%) 100%)',
+    },
+    { 
+      text: '지금까지 쌓아온 추억부터\n앞으로 여러분과 함께 만들어 갈 이야기까지',
+      image: arteFinalBow,
+      backgroundColor: 'linear-gradient(180deg, hsl(270 50% 15%) 0%, hsl(280 45% 25%) 100%)',
+    },
+    { 
+      text: '찾아오는 관객들에게 감동과 여운을 주고픈\n마음을 담아 공연을 준비했습니다.',
+      image: arteGroupScene,
+      backgroundColor: 'linear-gradient(180deg, hsl(275 40% 20%) 0%, hsl(285 55% 35%) 100%)',
+    },
+    { 
+      text: '2026 아르떼의 무대,\n많은 기대와 사랑 부탁드립니다.',
+      image: arteSceneHanbok,
+      backgroundColor: 'linear-gradient(180deg, hsl(280 60% 45%) 0%, hsl(275 50% 40%) 100%)',
+    },
+  ] as FinalMessageSlide[],
 };

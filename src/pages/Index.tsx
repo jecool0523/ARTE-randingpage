@@ -296,11 +296,8 @@ const Index = () => {
           />
         </SectionWrapper>
 
-        {/* Final Message */}
-        <FinalMessageSection
-          backgroundImage={finalMessageData.backgroundImage}
-          lines={finalMessageData.lines}
-        />
+        {/* Final Message - Scrollytelling */}
+        <FinalMessageSection slides={finalMessageData.slides} />
 
         {/* Credits */}
         <CreditsSection />
