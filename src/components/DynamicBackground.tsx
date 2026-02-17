@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useMemo } from 'react';
+import { dynamicBackgroundData } from '@/data/siteData';
 
 /**
  * DynamicBackground - 원본 everpurple.kr/ine 사이트의 배경 효과 재현
@@ -20,41 +21,41 @@ export const DynamicBackground = () => {
 
   // Layer 1: 초반 따뜻한 조명 (오케스트라 무대)
   const warmLayerOpacity = useTransform(
-    scrollYProgress, 
-    [0, 0.05, 0.15, 0.25], 
+    scrollYProgress,
+    [0, 0.05, 0.15, 0.25],
     [1, 1, 0.5, 0]
   );
 
   // Layer 2: 중간 보라색 분위기 전환
   const purpleLayerOpacity = useTransform(
-    scrollYProgress, 
-    [0.1, 0.25, 0.5, 0.7], 
+    scrollYProgress,
+    [0.1, 0.25, 0.5, 0.7],
     [0, 0.8, 1, 0.4]
   );
 
   // Layer 3: 깊은 남보라색 (콘텐츠 메인)
   const deepPurpleLayerOpacity = useTransform(
-    scrollYProgress, 
-    [0.35, 0.5, 0.75, 0.9], 
+    scrollYProgress,
+    [0.35, 0.5, 0.75, 0.9],
     [0, 0.9, 1, 0.5]
   );
 
   // Layer 4: 우주/밤하늘 느낌
   const cosmicLayerOpacity = useTransform(
-    scrollYProgress, 
-    [0.6, 0.8, 0.95], 
+    scrollYProgress,
+    [0.6, 0.8, 0.95],
     [0, 0.7, 1]
   );
 
   // Layer 5: 마지막 이미지
   const finalImageOpacity = useTransform(
-    scrollYProgress, 
-    [0.85, 0.95, 1], 
+    scrollYProgress,
+    [0.85, 0.95, 1],
     [0, 0.6, 1]
   );
 
   // 별 효과를 위한 랜덤 위치 (메모이제이션)
-  const stars = useMemo(() => 
+  const stars = useMemo(() =>
     Array.from({ length: 50 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
@@ -62,8 +63,8 @@ export const DynamicBackground = () => {
       size: Math.random() * 2 + 1,
       delay: Math.random() * 3,
       duration: Math.random() * 2 + 2,
-    })), 
-  []);
+    })),
+    []);
 
   return (
     <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
@@ -169,10 +170,10 @@ export const DynamicBackground = () => {
         style={{ opacity: finalImageOpacity }}
         className="absolute inset-0"
       >
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: "url('https://static-assets.everpurple.kr/history/images/10/Mashup_img_08.png')" 
+          style={{
+            backgroundImage: `url(${dynamicBackgroundData.finalImage})`
           }}
         />
         {/* 이미지 위 어두운 오버레이 */}

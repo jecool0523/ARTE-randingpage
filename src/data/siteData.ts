@@ -51,7 +51,7 @@ export const siteMetadata = {
   url: 'https://arte-randingpage.vercel.app',
   ogImage: arteStage01,
   twitterCard: 'summary_large_image' as const,
-  keywords: ['아르떼', 'ARTE', '디미고', 'dimigo','dimi', '연극', '뮤지컬', '동아리', '공연'],
+  keywords: ['아르떼', 'ARTE', '디미고', 'dimigo', 'dimi', '연극', '뮤지컬', '동아리', '공연'],
   locale: 'ko_KR',
 };
 
@@ -208,18 +208,25 @@ export const mashupImages = [
 export const landingData = {
   // 배경 이미지 (URL 또는 import한 로컬 이미지 변수 사용)
   backgroundImage: Background,
-  
+
   // 타이틀 이미지 (=ARTE Story 로고)
   titleImage: titletxt,
 
   // 환영 문구
   welcomeText: '히스토리 페이지에 오신 것을 환영합니다.',
-  
+
   // 버튼 텍스트
   buttonText: '관람 시작하기',
-  
+
   // 하단 설명 문구
   subText: '아르떼의 여정을 같이 체험해보세요'
+};
+
+// ============================
+// Dynamic Background Data
+// ============================
+export const dynamicBackgroundData = {
+  finalImage: arteFinalBow, // 마지막 구간 배경 이미지
 };
 
 // ============================
@@ -230,59 +237,59 @@ export const masonryGalleryData = {
   subtitle: "무대 뒤편의 땀방울부터 화려한 조명 아래의 환희까지, 아르떼가 걸어온 빛나는 여정의 기록들입니다.",
   // Masonry 레이아웃을 위해 이미지를 충분히 배치합니다 (3열 그리드 권장)
   images: [
-    { 
-      src: arteStage01, 
-      alt: "Opening Scene", 
-      title: "설렘의 시작", 
-      ratio: 1.5 
+    {
+      src: arteStage01,
+      alt: "Opening Scene",
+      title: "설렘의 시작",
+      ratio: 1.5
     },
-    { 
-      src: arteSoloReading, 
-      alt: "Solo Performance", 
-      title: "독백의 순간", 
-      ratio: 0.8 
+    {
+      src: arteSoloReading,
+      alt: "Solo Performance",
+      title: "독백의 순간",
+      ratio: 0.8
     },
-    { 
-      src: arteAudience, 
-      alt: "Audience View", 
-      title: "꽉 찬 객석", 
-      ratio: 1.2 
+    {
+      src: arteAudience,
+      alt: "Audience View",
+      title: "꽉 찬 객석",
+      ratio: 1.2
     },
-    { 
-      src: arteCurtainCall, 
-      alt: "Curtain Call", 
-      title: "커튼콜의 환호", 
-      ratio: 1.0 
+    {
+      src: arteCurtainCall,
+      alt: "Curtain Call",
+      title: "커튼콜의 환호",
+      ratio: 1.0
     },
-    { 
-      src: arteScript, 
-      alt: "Script Reading", 
-      title: "치열했던 연습", 
-      ratio: 0.7 
+    {
+      src: arteScript,
+      alt: "Script Reading",
+      title: "치열했던 연습",
+      ratio: 0.7
     },
-    { 
-      src: arteGroupScene, 
-      alt: "Group Acting", 
-      title: "함께 만드는 호흡", 
-      ratio: 1.4 
+    {
+      src: arteGroupScene,
+      alt: "Group Acting",
+      title: "함께 만드는 호흡",
+      ratio: 1.4
     },
-    { 
-      src: arteSceneHanbok, 
-      alt: "Traditional Play", 
-      title: "전통의 울림", 
-      ratio: 0.9 
+    {
+      src: arteSceneHanbok,
+      alt: "Traditional Play",
+      title: "전통의 울림",
+      ratio: 0.9
     },
-    { 
-      src: arteTheaterSeats, 
-      alt: "Empty Theater", 
-      title: "무대의 정적", 
-      ratio: 1.1 
+    {
+      src: arteTheaterSeats,
+      alt: "Empty Theater",
+      title: "무대의 정적",
+      ratio: 1.1
     },
-    { 
-      src: arteFinalBow, 
-      alt: "Final Bow", 
-      title: "마지막 인사", 
-      ratio: 1.3 
+    {
+      src: arteFinalBow,
+      alt: "Final Bow",
+      title: "마지막 인사",
+      ratio: 1.3
     },
   ]
 };
@@ -434,32 +441,32 @@ export const photoGallerySectionData = {
 // ============================
 export const finalMessageData = {
   slides: [
-    { 
+    {
       text: '그래서 저희는 무대에 오르려 합니다.',
       image: arteAudience,
       backgroundColor: 'linear-gradient(180deg, hsl(270 35% 12%) 0%, hsl(270 40% 20%) 100%)',
     },
-    { 
+    {
       text: '변하지 않는 열정과 진심으로,',
       image: arteStage01,
       backgroundColor: 'linear-gradient(180deg, hsl(280 70% 50%) 0%, hsl(280 60% 45%) 100%)',
     },
-    { 
+    {
       text: '여러분에게 아르떼의 이야기를 전하는 무대에서',
       image: arteCurtainCall,
       backgroundColor: 'linear-gradient(180deg, hsl(275 65% 55%) 0%, hsl(280 70% 45%) 100%)',
     },
-    { 
+    {
       text: '지금까지 쌓아온 추억부터\n앞으로 여러분과 함께 만들어 갈 이야기까지',
       image: arteFinalBow,
       backgroundColor: 'linear-gradient(180deg, hsl(270 50% 15%) 0%, hsl(280 45% 25%) 100%)',
     },
-    { 
+    {
       text: '찾아오는 관객들에게 감동과 여운을 주고픈\n마음을 담아 공연을 준비했습니다.',
       image: arteGroupScene,
       backgroundColor: 'linear-gradient(180deg, hsl(275 40% 20%) 0%, hsl(285 55% 35%) 100%)',
     },
-    { 
+    {
       text: '2026 아르떼의 무대,\n많은 기대와 사랑 부탁드립니다.',
       image: arteSceneHanbok,
       backgroundColor: 'linear-gradient(180deg, hsl(280 60% 45%) 0%, hsl(275 50% 40%) 100%)',
