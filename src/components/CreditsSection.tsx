@@ -1,9 +1,10 @@
 import { memo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { creditsData } from '@/data/siteData';
 
 export const CreditsSection = memo(function CreditsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -49,8 +50,8 @@ export const CreditsSection = memo(function CreditsSection() {
           viewport={{ once: true }}
         >
           <div className="font-display text-4xl md:text-5xl lg:text-6xl tracking-wider text-foreground/90">
-            <span className="block italic font-light">EVER</span>
-            <span className="block italic font-light text-primary">PURPLE</span>
+            <span className="block italic font-light">{creditsData.title.first}</span>
+            <span className="block italic font-light text-primary">{creditsData.title.second}</span>
           </div>
         </motion.div>
 
@@ -72,7 +73,7 @@ export const CreditsSection = memo(function CreditsSection() {
           viewport={{ once: true }}
         >
           <div className="font-display text-4xl md:text-5xl lg:text-6xl tracking-wider text-foreground/90">
-            <span className="block text-right">INE History</span>
+            <span className="block text-right">{creditsData.subtitle}</span>
           </div>
         </motion.div>
       </motion.div>
@@ -86,10 +87,10 @@ export const CreditsSection = memo(function CreditsSection() {
         viewport={{ once: true }}
       >
         <p className="text-xs text-muted-foreground/60 mb-2">
-          © 에버퍼플 All rights reserved.
+          {creditsData.copyright}
         </p>
         <p className="text-xs text-muted-foreground/40">
-          Clone coding project • Original: everpurple.kr/ine
+          {creditsData.cloneMessage}
         </p>
       </motion.div>
     </section>

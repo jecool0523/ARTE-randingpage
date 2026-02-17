@@ -483,3 +483,16 @@ export const finalMessageData = {
     },
   ] as FinalMessageSlide[],
 };
+
+// ============================
+// Credits Data
+// ============================
+export const creditsData = {
+  title: {
+    first: 'EVER',
+    second: 'PURPLE',
+  },
+  subtitle: 'INE History',
+  copyright: '© 에버퍼플 All rights reserved.',
+  cloneMessage: 'Clone coding project • Original: everpurple.kr/ine',
+};
