@@ -25,6 +25,7 @@ const PhotoGallerySection = lazy(() => import('@/components/PhotoGallerySection'
 const MasonryGallerySection = lazy(() => import('@/components/MasonryGallerySection').then(m => ({ default: m.MasonryGallerySection })));
 const FinalMessageSection = lazy(() => import('@/components/FinalMessageSection').then(m => ({ default: m.FinalMessageSection })));
 const CreditsSection = lazy(() => import('@/components/CreditsSection').then(m => ({ default: m.CreditsSection })));
+import { VideoSection } from '@/components/VideoSection';
 
 // Data imports from centralized siteData
 import {
@@ -55,6 +56,7 @@ import {
   photoGallerySectionData,
   finalMessageData,
   masonryGalleryData,
+  videoData,
 } from '@/data/siteData';
 
 // Loading fallback for lazy components
@@ -103,14 +105,14 @@ const Index = () => {
       <Suspense fallback={<SectionLoader />}>
         {/* Opening Sequence */}
         <MonologueSection lines={monologueTexts.opening} />
-        
+
         <SectionWrapper dividerBefore={DIVIDERS.line}>
           <MonologueSection lines={monologueTexts.openingContinue} />
         </SectionWrapper>
 
         {/* Gallery Sequence */}
         <SectionDivider type="gradient" fromColor="hsl(20, 10%, 8%)" toColor="transparent" />
-        
+
         <HorizontalGallerySection
           images={galleryImages1}
           description={horizontalGalleryData.first.description}
@@ -146,7 +148,7 @@ const Index = () => {
         />
 
         {/* Singles Zoom */}
-        <SectionWrapper 
+        <SectionWrapper
           dividerBefore={DIVIDERS.gradientToDark('hsl(260, 15%, 6%)')}
           dividerAfter={DIVIDERS.line}
         >
@@ -175,8 +177,25 @@ const Index = () => {
           title={tripleImageData.lockdown.title}
         />
 
+        {/* Video Sections */}
+        <SectionWrapper dividerBefore={DIVIDERS.line}>
+          <VideoSection
+            src={videoData.laVieBoheme1}
+            title="La Vie Boheme Part.1"
+            className="bg-black"
+          />
+        </SectionWrapper>
+
+        <SectionWrapper dividerBefore={DIVIDERS.line} dividerAfter={DIVIDERS.line}>
+          <VideoSection
+            src={videoData.laVieBoheme2}
+            title="La Vie Boheme Part.2"
+            className="bg-black"
+          />
+        </SectionWrapper>
+
         {/* Another World Zoom */}
-        <SectionWrapper 
+        <SectionWrapper
           dividerBefore={DIVIDERS.gradientFromDark('hsl(260, 15%, 6%)')}
           dividerAfter={DIVIDERS.line}
         >
@@ -214,7 +233,7 @@ const Index = () => {
         <ImageRevealSection images={mashupImages} layout="row" />
 
         {/* Festival Sequence */}
-        <SectionWrapper 
+        <SectionWrapper
           dividerBefore={DIVIDERS.gradientToDark('hsl(280, 20%, 5%)')}
           dividerAfter={DIVIDERS.line}
         >
@@ -229,7 +248,7 @@ const Index = () => {
         <ImageRevealSection images={festivalImages} layout="grid" />
 
         {/* Fan Story Sequence */}
-        <SectionWrapper 
+        <SectionWrapper
           dividerBefore={DIVIDERS.gradientFromDark('hsl(280, 20%, 5%)')}
           dividerAfter={DIVIDERS.line}
         >
@@ -247,7 +266,7 @@ const Index = () => {
         />
 
         {/* Streaming Section */}
-        <SectionWrapper 
+        <SectionWrapper
           dividerBefore={DIVIDERS.gradientToDark('hsl(220, 15%, 6%)')}
           dividerAfter={DIVIDERS.gradientFromDark('hsl(220, 15%, 6%)')}
         >
@@ -274,7 +293,7 @@ const Index = () => {
         <ConcertGallerySection images={concertImages4} />
 
         {/* Photo Gallery */}
-        <SectionWrapper 
+        <SectionWrapper
           dividerBefore={DIVIDERS.gradientToDark('hsl(270, 25%, 4%)')}
           dividerAfter={DIVIDERS.gradientFromDark('hsl(270, 25%, 4%)')}
         >
@@ -283,9 +302,9 @@ const Index = () => {
             topText={photoGallerySectionData.topText}
           />
         </SectionWrapper>
-        
+
         {/* Masonry Gallery */}
-        <SectionWrapper 
+        <SectionWrapper
           dividerBefore={DIVIDERS.gradientToDark('hsl(270, 25%, 4%)')}
           dividerAfter={DIVIDERS.line}
         >

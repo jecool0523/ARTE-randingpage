@@ -19,6 +19,8 @@ import arteGroupScene from '@/assets/arte_group_scene.jpg';
 import arteClassroom from '@/assets/arte_classroom.jpg';
 import Background from '@/assets/rent/CurtainCall.jpg';
 import titletxt from '@/assets/main_txt.png';
+import laVieBoheme1 from '@/assets/rent/LaVieBoheme_1.mp4';
+import laVieBoheme2 from '@/assets/rent/LaVieBoheme_2.mp4';
 
 
 // ============================
@@ -227,6 +229,14 @@ export const landingData = {
 // ============================
 export const dynamicBackgroundData = {
   finalImage: arteFinalBow, // 마지막 구간 배경 이미지
+};
+
+// ============================
+// Video Data
+// ============================
+export const videoData = {
+  laVieBoheme1,
+  laVieBoheme2,
 };
 
 // ============================
