@@ -23,8 +23,8 @@ export const MonologueSection = memo(function MonologueSection({ lines, classNam
     'deep-purple': 'bg-[hsl(265,40%,12%)]',
   };
 
-  const textColorClass = variant === 'purple' || variant === 'bright-purple' 
-    ? 'text-white text-shadow' 
+  const textColorClass = variant === 'purple' || variant === 'bright-purple'
+    ? 'text-white text-shadow'
     : 'text-text-body';
 
   return (
@@ -34,12 +34,13 @@ export const MonologueSection = memo(function MonologueSection({ lines, classNam
     >
       {/* Subtle background glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsla(var(--primary)/0.03)_0%,transparent_70%)]" />
-      
+
       <div className="monologue-text relative z-10">
         {lines.map((line, index) => {
           const start = 0.1 + index * 0.12;
-          const end = start + 0.35;
-          
+          // 모든 줄이 동시에 사라지도록 끝나는 지점을 고정 (0.9)
+          const end = 0.9;
+
           return (
             <MonologueLine
               key={index}
