@@ -46,10 +46,10 @@ export interface FinalMessageSlide {
 // ============================
 // ============================
 export const siteMetadata = {
-  title: 'ARTE | 아르떼 디미고 연극/뮤지컬 동아리',
+  title: 'ARTE | 디미고 아르떼의 여정들',
   description: '아르떼의 이야기를 몰입형 전시와 함께 감상해보세요.',
   author: 'ARTE',
-  themeColor: '#0a0a0a',
+  themeColor: '#fffd6fff',
   url: 'https://arte-randingpage.vercel.app',
   ogImage: arteStage01,
   twitterCard: 'summary_large_image' as const,
