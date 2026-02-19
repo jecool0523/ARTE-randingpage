@@ -38,8 +38,8 @@ export const MonologueSection = memo(function MonologueSection({ lines, classNam
       <div className="monologue-text relative z-10">
         {lines.map((line, index) => {
           const start = 0.1 + index * 0.12;
-          // 모든 줄이 동시에 사라지도록 끝나는 지점을 고정 (0.9)
-          const end = 0.9;
+          // 각 줄이 등장한 후 0.5만큼의 구간 동안 보여지고 사라지도록 수정
+          const end = start + 0.5;
 
           return (
             <MonologueLine
