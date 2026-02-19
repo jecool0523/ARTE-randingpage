@@ -489,10 +489,10 @@ export const finalMessageData = {
 // ============================
 export const creditsData = {
   title: {
-    first: 'EVER',
-    second: 'PURPLE',
+    first: 'DIMI',
+    second: 'ARTE',
   },
-  subtitle: 'INE History',
-  copyright: '© 에버퍼플 All rights reserved.',
-  cloneMessage: 'Clone coding project • Original: everpurple.kr/ine',
+  subtitle: 'ARTE History',
+  copyright: '© ARTE All rights reserved.',
+  cloneMessage: '아르떼 동아리 많은 지원 부탁드립니다.',
 };
