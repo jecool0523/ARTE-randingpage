@@ -70,7 +70,7 @@ export const BackgroundMusic = () => {
       audioRef.current.loop = true;
       audioRef.current.src = isVocal ? vocalSource : mrSource;
 
-      // Attempt autoplay
+      // Attempt autoplay directly
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
         playPromise
@@ -79,13 +79,34 @@ export const BackgroundMusic = () => {
             setShowPrompt(false);
           })
           .catch((error) => {
-            // Autoplay was prevented by browser policy
             console.log('Autoplay prevented by browser:', error);
             setIsPlaying(false);
             setShowPrompt(true);
           });
       }
     }
+  }, []);
+
+  // Listen for 'startBackgroundMusic' event or first document click to start music
+  useEffect(() => {
+    const startAudio = () => {
+      if (audioRef.current && audioRef.current.paused) {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+          setShowPrompt(false);
+        }).catch(console.error);
+      }
+      // Remove generic click listener once triggered
+      document.removeEventListener('click', startAudio);
+    };
+
+    window.addEventListener('startBackgroundMusic', startAudio);
+    document.addEventListener('click', startAudio);
+
+    return () => {
+      window.removeEventListener('startBackgroundMusic', startAudio);
+      document.removeEventListener('click', startAudio);
+    };
   }, []);
 
   // Auto-hide prompt after 8 seconds

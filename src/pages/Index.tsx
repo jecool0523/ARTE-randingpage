@@ -70,6 +70,9 @@ const Index = () => {
   const lenisRef = useLenis();
 
   const handleStart = useCallback(() => {
+    // Attempt to start background music upon user interaction
+    window.dispatchEvent(new CustomEvent('startBackgroundMusic'));
+
     if (lenisRef.current) {
       lenisRef.current.scrollTo(window.innerHeight, {
         duration: 1.5,
