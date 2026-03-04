@@ -121,9 +121,7 @@ const Index = () => {
           height="500vh"
         />
 
-        <SectionWrapper dividerBefore={DIVIDERS.transparent}>
-          <HorizontalGallerySection images={galleryImages2} height="500vh" />
-        </SectionWrapper>
+
 
         {/* Rewind Sequence */}
         <SectionWrapper dividerBefore={DIVIDERS.line}>
@@ -248,15 +246,7 @@ const Index = () => {
         <ImageRevealSection images={festivalImages} layout="grid" />
 
         {/* Fan Story Sequence */}
-        <SectionWrapper
-          dividerBefore={DIVIDERS.gradientFromDark('hsl(280, 20%, 5%)')}
-          dividerAfter={DIVIDERS.line}
-        >
-          <ZoomImageSection
-            imageSrc={zoomImageData.rewindMin.src}
-            imageAlt={zoomImageData.rewindMin.alt}
-          />
-        </SectionWrapper>
+
 
         <MonologueSection lines={monologueTexts.fanStory} variant="deep-purple" />
 
