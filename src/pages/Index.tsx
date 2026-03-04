@@ -293,17 +293,7 @@ const Index = () => {
           />
         </SectionWrapper>
 
-        {/* Masonry Gallery */}
-        <SectionWrapper
-          dividerBefore={DIVIDERS.gradientToDark('hsl(270, 25%, 4%)')}
-          dividerAfter={DIVIDERS.line}
-        >
-          <MasonryGallerySection
-            images={masonryGalleryData.images}
-            title={masonryGalleryData.title}
-            subtitle={masonryGalleryData.subtitle}
-          />
-        </SectionWrapper>
+
 
         {/* Final Message - Scrollytelling */}
         <FinalMessageSection slides={finalMessageData.slides} />
