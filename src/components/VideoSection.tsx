@@ -15,7 +15,7 @@ export const VideoSection = ({ src, poster, className = '', title }: VideoSectio
     const isInView = useInView(containerRef, { amount: 0.5, once: false });
 
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isMuted, setIsMuted] = useState(true); // Default to muted for autoplay compatibility
+    const [isMuted, setIsMuted] = useState(false); // Default to unmuted when manually playing
     const [progress, setProgress] = useState(0);
 
     // Auto-pause when out of view
