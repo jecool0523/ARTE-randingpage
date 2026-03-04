@@ -11,6 +11,7 @@ interface HorizontalGallerySectionProps {
   description?: string;
   title?: string;
   linkText?: string;
+  linkUrl?: string;
   height?: string;
 }
 
@@ -19,6 +20,7 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
   description,
   title,
   linkText,
+  linkUrl,
   height = '400vh',
 }: HorizontalGallerySectionProps) {
   const containerRef = useRef<HTMLElement>(null);
@@ -40,10 +42,10 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
   const imageWidth = isMobile ? 260 : 450;
   const imageHeight = isMobile ? '30vh' : '50vh';
   const gap = isMobile ? 12 : 32;
-  
+
   const totalWidth = images.length * imageWidth + (images.length - 1) * gap;
   const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
-  
+
   const translateX = useTransform(
     scrollYProgress,
     [0, 1],
@@ -100,9 +102,20 @@ export const HorizontalGallerySection = memo(function HorizontalGallerySection({
               </p>
             )}
             {linkText && (
-              <button className="mt-2 font-body text-fluid-xs text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground md:mt-4">
-                {linkText}
-              </button>
+              linkUrl ? (
+                <a
+                  href={linkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block font-body text-fluid-xs text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground md:mt-4"
+                >
+                  {linkText}
+                </a>
+              ) : (
+                <button className="mt-2 font-body text-fluid-xs text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground md:mt-4">
+                  {linkText}
+                </button>
+              )
             )}
             {title && (
               <p className="mt-2 font-display text-fluid-sm italic text-primary md:mt-4 md:text-fluid-lg">

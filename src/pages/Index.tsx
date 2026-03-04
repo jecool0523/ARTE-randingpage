@@ -117,6 +117,7 @@ const Index = () => {
           images={galleryImages1}
           description={horizontalGalleryData.first.description}
           linkText={horizontalGalleryData.first.linkText}
+          linkUrl={horizontalGalleryData.first.linkUrl}
           title={horizontalGalleryData.first.title}
           height="500vh"
         />
