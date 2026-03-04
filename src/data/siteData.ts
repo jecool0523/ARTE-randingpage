@@ -459,12 +459,12 @@ export const finalMessageData = {
     {
       text: '변하지 않는 열정과 진심으로,',
       image: arteStage01,
-      backgroundColor: 'linear-gradient(180deg, hsl(280 70% 50%) 0%, hsl(280 60% 45%) 100%)',
+      backgroundColor: 'linear-gradient(180deg, #ddd535ff 0%, #eee319ff 100%)',
     },
     {
       text: '여러분에게 아르떼의 이야기를 전하는 무대에서',
       image: arteCurtainCall,
-      backgroundColor: 'linear-gradient(180deg, hsl(275 65% 55%) 0%, hsl(280 70% 45%) 100%)',
+      backgroundColor: 'linear-gradient(180deg, #F7ED12 0%, #d5cb12ff 100%)',
     },
     {
       text: '지금까지 쌓아온 추억부터\n앞으로 여러분과 함께 만들어 갈 이야기까지',
@@ -474,12 +474,12 @@ export const finalMessageData = {
     {
       text: '찾아오는 관객들에게 감동과 여운을 주고픈\n마음을 담아 공연을 준비했습니다.',
       image: arteGroupScene,
-      backgroundColor: 'linear-gradient(180deg, hsl(275 40% 20%) 0%, hsl(285 55% 35%) 100%)',
+      backgroundColor: 'linear-gradient(180deg, hsl(275 40% 20%) 0%, #d5cb12ff 100%)',
     },
     {
       text: '2026 아르떼의 무대,\n많은 기대와 사랑 부탁드립니다.',
       image: arteSceneHanbok,
-      backgroundColor: 'linear-gradient(180deg, hsl(280 60% 45%) 0%, hsl(275 50% 40%) 100%)',
+      backgroundColor: 'linear-gradient(180deg, #F7ED12 0%, #eee319ff 100%)',
     },
   ] as FinalMessageSlide[],
 };
