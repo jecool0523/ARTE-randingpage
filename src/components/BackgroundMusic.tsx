@@ -68,6 +68,23 @@ export const BackgroundMusic = () => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
       audioRef.current.loop = true;
+      audioRef.current.src = isVocal ? vocalSource : mrSource;
+
+      // Attempt autoplay
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+            setShowPrompt(false);
+          })
+          .catch((error) => {
+            // Autoplay was prevented by browser policy
+            console.log('Autoplay prevented by browser:', error);
+            setIsPlaying(false);
+            setShowPrompt(true);
+          });
+      }
     }
   }, []);
 
