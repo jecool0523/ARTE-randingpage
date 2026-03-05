@@ -22,6 +22,116 @@ import titletxt from '@/assets/main_txt.png';
 import laVieBoheme1 from '@/assets/rent/LaVieBoheme_1.mp4';
 import laVieBoheme2 from '@/assets/rent/LaVieBoheme_2.mp4';
 
+// ============================
+// Additional Assets (1st)
+// ============================
+import firstPlay from '@/assets/1st/1st_play.jpg';
+import firstBook from '@/assets/1st/book.jpg';
+import firstScript from '@/assets/1st/script.png';
+
+export const firstAssets = [
+  { src: firstPlay, alt: '1st play' },
+  { src: firstBook, alt: '1st book' },
+  { src: firstScript, alt: '1st script' },
+];
+
+// ============================
+// Additional Assets (DPS)
+// ============================
+import dpsBacktake from '@/assets/DPS/backtake.jpg';
+import dpsCameron from '@/assets/DPS/cameron.jpg';
+import dpsCaripe from '@/assets/DPS/caripe.jpg';
+import dpsCele from '@/assets/DPS/cele.jpg';
+import dpsCurtaincall from '@/assets/DPS/curtaincall.jpg';
+import dpsEveryone from '@/assets/DPS/everyone.webp';
+import dpsKiting from '@/assets/DPS/kiting.webp';
+import dpsMyLoad from '@/assets/DPS/myLoad.jpg';
+import dpsNox from '@/assets/DPS/nox.jpg';
+import dpsPanletter from '@/assets/DPS/panletter.jpg';
+import dpsPoat from '@/assets/DPS/poat.jpg';
+import dpsRe from '@/assets/DPS/re.jpg';
+
+export const dpsAssets = [
+  { src: dpsBacktake, alt: 'DPS backtake' },
+  { src: dpsCameron, alt: 'DPS cameron' },
+  { src: dpsCaripe, alt: 'DPS caripe' },
+  { src: dpsCele, alt: 'DPS cele' },
+  { src: dpsCurtaincall, alt: 'DPS curtaincall' },
+  { src: dpsEveryone, alt: 'DPS everyone' },
+  { src: dpsKiting, alt: 'DPS kiting' },
+  { src: dpsMyLoad, alt: 'DPS myLoad' },
+  { src: dpsNox, alt: 'DPS nox' },
+  { src: dpsPanletter, alt: 'DPS panletter' },
+  { src: dpsPoat, alt: 'DPS poat' },
+  { src: dpsRe, alt: 'DPS re' },
+];
+
+// ============================
+// Additional Assets (rent)
+// ============================
+// rent/CurtainCall.jpg and LaVieBoheme_1.mp4, LaVieBoheme_2.mp4 are already imported above
+import rentRentLogo from '@/assets/rent/Rent!.jpg';
+import rentChactergraph from '@/assets/rent/chactergraph.png';
+import rentCharacter1 from '@/assets/rent/character1.png';
+import rentCharacter2 from '@/assets/rent/character2.png';
+import rentCow from '@/assets/rent/cow.jpg';
+import rentCow2 from '@/assets/rent/cow2.jpg';
+import rentDance from '@/assets/rent/dance.webp';
+import rentDuet from '@/assets/rent/duet.jpg';
+import rentDuo from '@/assets/rent/duo.webp';
+import rentDuoFull from '@/assets/rent/duo_full.jpg';
+import rentEnding from '@/assets/rent/ending.jpg';
+import rentEnsemble from '@/assets/rent/ensemble.webp';
+import rentFull from '@/assets/rent/full.jpg';
+import rentFullShot from '@/assets/rent/full_shot.jpg';
+import rentOpening from '@/assets/rent/opening.jpg';
+import rentPoster from '@/assets/rent/poster.png';
+import rentRabi from '@/assets/rent/rabi.jpg';
+import rentReady from '@/assets/rent/ready.jpg';
+import rentRedSit from '@/assets/rent/red_sit.jpg';
+import rentSolo from '@/assets/rent/solo.jpg';
+import rentStand from '@/assets/rent/stand.jpg';
+import rentThink from '@/assets/rent/think.jpg';
+
+export const rentAssets = [
+  { src: rentRentLogo, alt: 'rent logo' },
+  { src: rentChactergraph, alt: 'rent character graph' },
+  { src: rentCharacter1, alt: 'rent character 1' },
+  { src: rentCharacter2, alt: 'rent character 2' },
+  { src: rentCow, alt: 'rent cow' },
+  { src: rentCow2, alt: 'rent cow 2' },
+  { src: rentDance, alt: 'rent dance' },
+  { src: rentDuet, alt: 'rent duet' },
+  { src: rentDuo, alt: 'rent duo' },
+  { src: rentDuoFull, alt: 'rent duo full' },
+  { src: rentEnding, alt: 'rent ending' },
+  { src: rentEnsemble, alt: 'rent ensemble' },
+  { src: rentFull, alt: 'rent full' },
+  { src: rentFullShot, alt: 'rent full shot' },
+  { src: rentOpening, alt: 'rent opening' },
+  { src: rentPoster, alt: 'rent poster' },
+  { src: rentRabi, alt: 'rent rabi' },
+  { src: rentReady, alt: 'rent ready' },
+  { src: rentRedSit, alt: 'rent red sit' },
+  { src: rentSolo, alt: 'rent solo' },
+  { src: rentStand, alt: 'rent stand' },
+  { src: rentThink, alt: 'rent think' },
+];
+
+// ============================
+// Additional Assets (Others)
+// ============================
+import otherArteLogo from '@/assets/ARTE.jpg';
+import otherKakaoTalk from '@/assets/KakaoTalk_20260304_230146519_26.jpg';
+import otherPlay from '@/assets/play.jpg';
+import otherRentTicket from '@/assets/rent_ticket.jpg';
+
+export const otherAssets = [
+  { src: otherArteLogo, alt: 'ARTE logo' },
+  { src: otherKakaoTalk, alt: 'KakaoTalk 20260304' },
+  { src: otherPlay, alt: 'Play' },
+  { src: otherRentTicket, alt: 'Rent ticket' },
+];
 
 // ============================
 // Type Definitions (Media supports both image and video)
