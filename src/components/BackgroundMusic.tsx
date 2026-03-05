@@ -8,7 +8,7 @@ export const BackgroundMusic = () => {
   const [showPrompt, setShowPrompt] = useState(true);
   const [volume, setVolume] = useState(0.3);
   const [isHovered, setIsHovered] = useState(false);
-  const [isVocal, setIsVocal] = useState(false);
+  const [isVocal, setIsVocal] = useState(true);
 
   // Audio sources
   const mrSource = '/S_of_L_mr.mp3';
