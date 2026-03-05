@@ -1,4 +1,4 @@
-import { useCallback, useEffect, lazy, Suspense } from 'react';
+import { useCallback, useEffect, useState, lazy, Suspense } from 'react';
 import { useLenis } from '@/hooks/useLenis';
 
 // Critical above-the-fold components (loaded immediately)
@@ -68,12 +68,16 @@ const SectionLoader = () => (
 
 const Index = () => {
   const lenisRef = useLenis();
+  const [isStarted, setIsStarted] = useState(false);
 
   const handleStart = useCallback(() => {
     // Attempt to start background music upon user interaction
     window.dispatchEvent(new CustomEvent('startBackgroundMusic'));
+    setIsStarted(true);
 
     if (lenisRef.current) {
+      // Start lenis first if it was stopped
+      lenisRef.current.start();
       lenisRef.current.scrollTo(window.innerHeight, {
         duration: 1.5,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -85,8 +89,25 @@ const Index = () => {
     document.documentElement.classList.add('lenis', 'lenis-smooth');
     return () => {
       document.documentElement.classList.remove('lenis', 'lenis-smooth');
+      // Ensure body scroll is restored on unmount
+      document.body.style.overflow = '';
     };
   }, []);
+
+  // Effect to manage scrolling based on isStarted state
+  useEffect(() => {
+    if (!isStarted) {
+      document.body.style.overflow = 'hidden';
+      if (lenisRef.current) {
+        lenisRef.current.stop();
+      }
+    } else {
+      document.body.style.overflow = '';
+      if (lenisRef.current) {
+        lenisRef.current.start();
+      }
+    }
+  }, [isStarted, lenisRef]);
 
   return (
     <main>

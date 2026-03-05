@@ -163,7 +163,7 @@ export const siteMetadata = {
   url: 'https://arte-randingpage.vercel.app',
   ogImage: arteStage01,
   twitterCard: 'summary_large_image' as const,
-  keywords: ['아르떼', 'ARTE', '디미고', 'dimigo', 'dimi', '연극', '뮤지컬', '동아리', '공연'],
+  keywords: ['아르떼', 'ARTE', '디미고', '디미', 'dimigo', 'dimi', '연극', '뮤지컬', '동아리', '공연', '히스토리', '랜딩 페이지', '소개'],
   locale: 'ko_KR',
 };
 
@@ -217,21 +217,21 @@ export const galleryImages2 = [
 
 // Triple Image Sections
 export const anotherWorldImages = [
-  { src: dpsNox, alt: '연극 장면' },
-  { src: dpsPanletter, alt: '독백 장면' },
-  { src: dpsPoat, alt: '무대 장면' },
+  { src: firstPlay, alt: '연극 장면' },
+  { src: firstBook, alt: '독백 장면' },
+  { src: firstScript, alt: '무대 장면' },
 ];
 
 export const showdownImages = [
   { src: dpsRe, alt: '공연' },
-  { src: firstPlay, alt: '공연' },
-  { src: firstBook, alt: '공연' },
+  { src: dpsNox, alt: '공연' },
+  { src: dpsPoat, alt: '공연' },
 ];
 
 export const lockdownImages = [
-  { src: firstScript, alt: '뮤지컬 장면' },
-  { src: otherArteLogo, alt: '공연장' },
-  { src: otherKakaoTalk, alt: '관객' },
+  { src: rentCow, alt: '뮤지컬 장면' },
+  { src: rentEnsemble, alt: '공연장' },
+  { src: rentThink, alt: '관객' },
 ];
 
 // Festival Images
