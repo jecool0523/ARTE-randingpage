@@ -5,12 +5,11 @@
 // ============================
 // Import Assets
 // ============================
-export const backgroundMusicUrl = 'https://static-assets.everpurple.kr/history/ine_history_bgm.mp3';
-// 또는 로컬 파일 사용 시: import bgm from '@/assets/bgm.mp3';
 import arteStage01 from '@/assets/arte_stage_01.jpg';
 import arteCurtainCall from '@/assets/arte_curtain_call.jpg';
 import arteTheaterSeats from '@/assets/arte_theater_seats.jpg';
 import arteScript from '@/assets/arte_script.jpg';
+import bongbongee from '@/assets/bongbongee.jpg';
 import arteAudience from '@/assets/arte_audience.jpg';
 import arteFinalBow from '@/assets/arte_final_bow.jpg';
 import arteSceneHanbok from '@/assets/arte_scene_hanbok.jpg';
@@ -45,6 +44,8 @@ import dpsCele from '@/assets/DPS/cele.jpg';
 import dpsCurtaincall from '@/assets/DPS/curtaincall.jpg';
 import dpsEveryone from '@/assets/DPS/everyone.webp';
 import dpsKiting from '@/assets/DPS/kiting.webp';
+import dpsticket from '@/assets/DPS/ticket.png';
+import dpssing from '@/assets/DPS/sing.jpg';
 import dpsMyLoad from '@/assets/DPS/myLoad.jpg';
 import dpsNox from '@/assets/DPS/nox.jpg';
 import dpsPanletter from '@/assets/DPS/panletter.jpg';
@@ -60,7 +61,7 @@ export const dpsAssets = [
   { src: dpsEveryone, alt: 'DPS everyone' },
   { src: dpsKiting, alt: 'DPS kiting' },
   { src: dpsMyLoad, alt: 'DPS myLoad' },
-  { src: dpsNox, alt: 'DPS nox' },
+  { src: dpsCameron, alt: 'DPS Cameron' },
   { src: dpsPanletter, alt: 'DPS panletter' },
   { src: dpsPoat, alt: 'DPS poat' },
   { src: dpsRe, alt: 'DPS re' },
@@ -125,6 +126,7 @@ import otherArteLogo from '@/assets/ARTE.jpg';
 import otherKakaoTalk from '@/assets/KakaoTalk_20260304_230146519_26.jpg';
 import otherPlay from '@/assets/play.jpg';
 import otherRentTicket from '@/assets/rent_ticket.jpg';
+import { Ticket } from 'lucide-react';
 
 export const otherAssets = [
   { src: otherArteLogo, alt: 'ARTE logo' },
@@ -223,14 +225,14 @@ export const anotherWorldImages = [
 ];
 
 export const showdownImages = [
-  { src: dpsRe, alt: '공연' },
   { src: dpsNox, alt: '공연' },
-  { src: dpsPoat, alt: '공연' },
+  { src: dpsCameron, alt: '공연' },
+  { src: dpssing, alt: '공연' },
 ];
 
 export const lockdownImages = [
-  { src: rentCow, alt: '뮤지컬 장면' },
-  { src: rentEnsemble, alt: '공연장' },
+  { src: rentOpening, alt: '뮤지컬 장면' },
+  { src: rentCow2, alt: '공연장' },
   { src: rentThink, alt: '관객' },
 ];
 
@@ -304,8 +306,8 @@ export const webtoonImages = [
 
 // Traffic Light Images
 export const trafficLightImages = [
-  { src: arteGroupScene, alt: '앙상블' },
-  { src: arteSceneHanbok, alt: '장면' },
+  { src: otherArteLogo, alt: '앙상블' },
+  { src: Ticket, alt: '장면' },
 ];
 
 // Mashup Images
