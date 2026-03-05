@@ -205,80 +205,80 @@ export const galleryImages1 = [
 ];
 
 export const galleryImages2 = [
-  { src: arteGroupScene, alt: 'ARTE 그룹 장면', ratio: 0.8 },
-  { src: arteClassroom, alt: '교실 장면', ratio: 0.8 },
-  { src: arteStage01, alt: 'ARTE 무대', ratio: 0.8 },
-  { src: arteCurtainCall, alt: '커튼콜', ratio: 0.8 },
-  { src: arteFinalBow, alt: '공연 마무리', ratio: 0.8 },
-  { src: arteAudience, alt: '공연 관람', ratio: 0.8 },
-  { src: arteSceneHanbok, alt: '무대 장면', ratio: 0.8 },
-  { src: arteScript, alt: '연습 장면', ratio: 0.8 },
+  { src: dpsBacktake, alt: 'ARTE 그룹 장면', ratio: 0.8 },
+  { src: dpsCameron, alt: '교실 장면', ratio: 0.8 },
+  { src: dpsCaripe, alt: 'ARTE 무대', ratio: 0.8 },
+  { src: dpsCele, alt: '커튼콜', ratio: 0.8 },
+  { src: dpsCurtaincall, alt: '공연 마무리', ratio: 0.8 },
+  { src: dpsEveryone, alt: '공연 관람', ratio: 0.8 },
+  { src: dpsKiting, alt: '무대 장면', ratio: 0.8 },
+  { src: dpsMyLoad, alt: '연습 장면', ratio: 0.8 },
 ];
 
 // Triple Image Sections
 export const anotherWorldImages = [
-  { src: arteGroupScene, alt: '연극 장면' },
-  { src: arteSoloReading, alt: '독백 장면' },
-  { src: arteClassroom, alt: '무대 장면' },
+  { src: dpsNox, alt: '연극 장면' },
+  { src: dpsPanletter, alt: '독백 장면' },
+  { src: dpsPoat, alt: '무대 장면' },
 ];
 
 export const showdownImages = [
-  { src: arteFinalBow, alt: '공연' },
-  { src: arteCurtainCall, alt: '공연' },
-  { src: arteStage01, alt: '공연' },
+  { src: dpsRe, alt: '공연' },
+  { src: firstPlay, alt: '공연' },
+  { src: firstBook, alt: '공연' },
 ];
 
 export const lockdownImages = [
-  { src: arteSceneHanbok, alt: '뮤지컬 장면' },
-  { src: arteTheaterSeats, alt: '공연장' },
-  { src: arteAudience, alt: '관객' },
+  { src: firstScript, alt: '뮤지컬 장면' },
+  { src: otherArteLogo, alt: '공연장' },
+  { src: otherKakaoTalk, alt: '관객' },
 ];
 
 // Festival Images
 export const festivalImages = [
-  { src: arteStage01, alt: '죽은 시인의 사회', title: '죽은 시인의 사회' },
-  { src: arteFinalBow, alt: '정기 공연', title: '정기 공연' },
-  { src: arteSceneHanbok, alt: '전통극', title: '전통극' },
-  { src: arteGroupScene, alt: '앙상블', title: '앙상블' },
+  { src: rentOpening, alt: '죽은 시인의 사회', title: '죽은 시인의 사회' },
+  { src: rentReady, alt: '정기 공연', title: '정기 공연' },
+  { src: rentStand, alt: '전통극', title: '전통극' },
+  { src: otherPlay, alt: '앙상블', title: '앙상블' },
 ];
 
 // Fan Story Images
 export const fanImages = [
-  { src: arteAudience, alt: '관객' },
-  { src: arteTheaterSeats, alt: '공연장' },
-  { src: arteCurtainCall, alt: '커튼콜' },
-  { src: arteScript, alt: '대본' },
+  { src: otherRentTicket, alt: '관객' },
+  { src: rentDance, alt: '공연장' },
+  { src: rentDuet, alt: '커튼콜' },
+  { src: rentEnsemble, alt: '대본' },
 ];
 
 // Streaming Background Images
 export const streamingImages = [
-  arteTheaterSeats,
-  arteAudience,
-  arteStage01,
+  rentSolo,
+  rentRabi,
+  rentRedSit,
 ];
 
 // Concert Images
 export const concertImages1 = [
-  { src: arteStage01, alt: '공연' },
+  { src: rentFullShot, alt: '공연' },
 ];
 
 export const concertImages2 = [
-  { src: arteFinalBow, alt: '공연' },
+  { src: rentDuoFull, alt: '공연' },
 ];
 
 export const concertImages3 = [
-  { src: arteCurtainCall, alt: '커튼콜' },
-  { src: arteSceneHanbok, alt: '장면' },
-  { src: arteGroupScene, alt: '앙상블' },
+  { src: rentFull, alt: '커튼콜' },
+  { src: rentEnding, alt: '장면' },
+  { src: rentDuo, alt: '앙상블' },
 ];
 
 export const concertImages4 = [
-  { src: arteStage01, alt: '무대' },
-  { src: arteFinalBow, alt: '마무리' },
-  { src: arteSoloReading, alt: '독백' },
-  { src: arteClassroom, alt: '장면' },
-  { src: arteAudience, alt: '관객' },
-  { src: arteCurtainCall, alt: '커튼콜' },
+  { src: rentCow, alt: '무대' },
+  { src: rentCow2, alt: '마무리' },
+  { src: rentThink, alt: '독백' },
+  { src: rentPoster, alt: '장면' },
+  { src: rentRentLogo, alt: '관객' },
+  { src: arteGroupScene, alt: '커튼콜' },
 ];
 
 // Photo Gallery Images
@@ -297,9 +297,9 @@ export const photoGalleryImages = [
 
 // Webtoon Images
 export const webtoonImages = [
-  { src: arteScript, alt: '대본' },
-  { src: arteSoloReading, alt: '연습' },
-  { src: arteClassroom, alt: '리허설' },
+  { src: rentChactergraph, alt: '대본' },
+  { src: rentCharacter1, alt: '연습' },
+  { src: rentCharacter2, alt: '리허설' },
 ];
 
 // Traffic Light Images
